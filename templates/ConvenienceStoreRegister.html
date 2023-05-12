@@ -1,0 +1,40 @@
+{%extends "base.html"%}
+
+{%block title%}
+  {{title}}
+{%endblock%}
+{%block body%}
+
+
+<style>
+  .container{
+    background-image: url("{%static 'image__2_-removebg-preview 1.svg'% }  ");
+  }
+  form{
+    display: flex;
+    align-items: center;
+    background-color: #d9c9d9;
+    border-radius: 50%;
+    padding: 20px;
+  }
+  input[type="text"]{
+    background-color: #8ca87c;
+    border-radius: 50%;
+    padding-top: 10px;
+    text-align: center;
+  }
+</style>
+
+<div class="container">
+
+  
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar</button>
+  </form>
+</div>
+  
+
+
+{%endblock%}
