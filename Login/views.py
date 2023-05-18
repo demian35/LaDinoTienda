@@ -4,11 +4,23 @@ from django.views.generic import CreateView
 #, TemplateView
 from .models import Perfil
 from .forms import SignUpForm
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LogoutView
+from .forms import LoginForm
 
-class identificate(LoginView):
-    template_name = 'iniciar_sesion.html'
-
+def identificate(request):
+    if request.method == 'POST':
+        form = LoginForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                # Autenticación exitosa, redirigir a la página deseada
+                return redirect('principal')
+    else:
+        form = LoginForm(request)
+    return render(request, 'iniciar_sesion.html', {'form': form})
 class SignOutView(LogoutView):
     pass
 class registro(CreateView):
@@ -26,7 +38,6 @@ class registro(CreateView):
         login(self.request, usuario)
         return redirect('/')
         
-def home(request):
-    return render(request,"home.html", {})
+
 def contacto (request):
     return render(request,"contacto.html",{})

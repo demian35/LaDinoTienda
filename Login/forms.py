@@ -6,6 +6,18 @@ from django.core.exceptions import ValidationError
 #from django.forms.fields import EmailField  
 #from django.forms.forms import Form  
 
+from django.contrib.auth.forms import AuthenticationForm
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(
+        
+        widget=forms.TextInput(attrs={'placeholder': 'Nombre de usuario', 'class':'py-2 pr-5 mr-1 '})
+    )
+    password = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'Contraseña', 'class':'py-2 pr-5 mr-1 '})
+    )
+
+
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=140, required=True)
     last_name = forms.CharField(max_length=140, required=False)

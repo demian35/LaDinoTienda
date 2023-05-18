@@ -4,6 +4,8 @@ from .forms import ConvenienceStoreForm , ProvidersForm
 from django.contrib import messages
 from django.urls import reverse_lazy
 
+def home(request):
+    return render(request,"home.html", {})
 
 def ProvidersFormView(request):
     if request.method=="POST":
