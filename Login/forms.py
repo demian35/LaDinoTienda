@@ -14,23 +14,27 @@ class LoginForm(AuthenticationForm):
         widget=forms.TextInput(attrs={'placeholder': 'Nombre de usuario', 'class':'py-2 pr-5 mr-1 '})
     )
     password = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': 'Contraseña', 'class':'py-2 pr-5 mr-1 '})
+        widget=forms.PasswordInput(attrs={'placeholder': 'Contraseña', 'class':'py-2 pr-5 mr-1 '})
     )
 
 
 class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(max_length=140, required=True)
-    last_name = forms.CharField(max_length=140, required=False)
-    email = forms.EmailField(required=True)
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'placeholder': 'E-mail', 'class':'rounded-pill py-2 pr-5 mr-1'}))
 
-
+    username = forms.CharField(   
+        widget=forms.TextInput(attrs={'placeholder': 'Nombre de usuario', 'class':'rounded-pill py-2 pr-5 mr-1 '})
+    )
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Contraseña', 'class':'rounded-pill py-2 pr-5 mr-1 '})
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Confirmar contraseña', 'class':'rounded-pill py-2 pr-5 mr-1 '})
+    )
     class Meta:
         model = User
         fields = (
             'username',
             'email',
-            'first_name',
-            'last_name',
             'password1',
             'password2',
         )

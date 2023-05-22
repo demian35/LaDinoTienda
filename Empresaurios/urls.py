@@ -20,6 +20,7 @@ from Login.views import registro, identificate, SignOutView, contacto
 from clients.views import home
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('registro/', registro.as_view(), name='registro'),
     path("providers/", ProvidersFormView),
     path("conveniencestore/", ConvenienceStoreFormView),
     re_path('', identificate, name='identificate'),

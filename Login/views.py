@@ -28,16 +28,19 @@ class registro(CreateView):
     form_class = SignUpForm
 
     def form_valid(self, form):
-        '''
-        En esta parte, si el form es valido lo guardamos y usamos authenticate e iniciamos sesión
-        '''
         form.save()
         usuario = form.cleaned_data.get('username')
         password = form.cleaned_data.get('password1')
         usuario = authenticate(username=usuario,password=password)
         login(self.request, usuario)
         return redirect('/')
+    def userRol(request):
+        if request.method=='POST':
+            if 'vendedor' in request.POST:
+                return render(request, "registrovendedor.html",{})
         
+            elif 'comprador' in request.POST:
+                return render(request, "registrocomprador.html",{})
 
 def contacto (request):
     return render(request,"contacto.html",{})
