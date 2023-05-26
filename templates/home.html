@@ -6,18 +6,9 @@
 {%block title%}Home{%endblock%}
 {%block body%}
 <p>se encontraron {{cantidad}} resultados para {{tipo}}</p>  
-
-  {% for produto in productos%}
-  <p>{{producto.Name}}</p>  
-  <p>{{producto.Price}}</p>  
-  <p>{{producto.Marca}}</p>  
-  <p>{{producto.Description}}</p>  
-  <p>{{producto.quantity}}</p>  
-  <p>{{producto.photoPath}}</p>  
-  <p>{{producto.provider}}</p>  
-  
-  {%endfor%}  
-<a href="busqueda/productos de limpieza"></a>
-<a href="busqueda/productos a granel"></a>
-<a href="busqueda/bebidas"></a>
+=======
+  <a href="busqueda/productos de limpieza"></a>
+  <a href="busqueda/productos a granel"></a>
+  <a href="busqueda/bebidas"></a>
+>>>>>>> 8b0cba60f1799ad0f2d7aa5dc19752f65cadd579
 {% endblock body %}
