@@ -1,0 +1,16 @@
+{%extends "base.html"%}
+{% load static %}
+{%block css%}
+  <link rel="stylesheet" type="text/css" href="{%static 'home.css' %}"/> 
+{% endblock %}
+{%block title%}Home{%endblock%}
+{%block body%}
+
+  {% for produto in productos%}
+    <img src="{{producto.photoPath}}" alt="">
+    <p>{{producto.Description}}</p>
+    
+  {%endfor%}  
+  {{subtotal}}
+  {{total}}
+{% endblock body %}

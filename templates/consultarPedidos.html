@@ -1,0 +1,21 @@
+{%extends "base.html"%}
+{% load static %}
+{%block css%}
+  <link rel="stylesheet" type="text/css" href="{%static 'home.css' %}"/> 
+{% endblock %}
+{%block title%}Home{%endblock%}
+{%block body%}
+pedidos
+<table>
+    <th>Pedido #</th>
+    <th>Total</th>
+    <th>Estado</th>
+{%for pedido in pedidos %}
+<tr>
+    <td>{{pedido.numero}}</td>
+    <td>{{pedido.total}}</td>
+    <td>{{pedido.Estado}}</td>
+</tr>
+{%endfor%}
+</table>
+{% endblock body %}

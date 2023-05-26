@@ -18,11 +18,11 @@ class Products(models.Model):
     def __str__(self) -> str:
         return "El proveedor es: %s, %s"%( self.provider,self.Name)
 class Cart(models.Model): 
-    id_convenience_store=models.ForeignKey(ConvenienceStore,on_delete=models.CASCADE,verbose_name="Id de comprador")
     bought=models.BooleanField(default=False,verbose_name="Comprado")
     quantity=models.IntegerField(default=1, verbose_name="Cantidad")
+    complete=models.BooleanField(default=False,verbose_name="Completado")
+    id_convenience_store=models.ForeignKey(ConvenienceStore,on_delete=models.CASCADE,verbose_name="Id de comprador")
     id_provider=models.ForeignKey(Providers, on_delete=models.CASCADE, verbose_name="id de Vendedor")
     id_producto=models.ForeignKey(Products,on_delete=models.CASCADE,verbose_name="Id de producto")
 
-    
 

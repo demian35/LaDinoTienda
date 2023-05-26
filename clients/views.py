@@ -3,9 +3,19 @@ from django.http import  HttpResponseRedirect
 from .forms import ConvenienceStoreForm , ProvidersForm
 from django.contrib import messages
 from django.urls import reverse_lazy
+from .models import Providers, ConvenienceStore
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def home(request):
-    return render(request,"home.html", {})
+    user_id=request.user.id
+    provider=Providers.objects.filter(user_id=user_id)
+    buyer=ConvenienceStore.objects.filter(user_id=user_id)
+    if provider:
+        if provider.name=="" or :
+        return render(request,"providers_home.html", {"provider":provider})
+    elif buyer:
+        return render(request,"buyer_home.hmtl",{})
 
 def ProvidersFormView(request):
     if request.method=="POST":
