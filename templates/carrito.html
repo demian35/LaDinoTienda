@@ -1,0 +1,23 @@
+{%extends "base.html"%}
+{% load static %}
+{%block css%}
+  <link rel="stylesheet" type="text/css" href="{%static 'home.css' %}"/> 
+{% endblock %}
+{%block title%}Carrito{%endblock%}
+{%block body%}
+
+    <p>Mi carrito </p>
+    {% for producto in Products%}
+    <img src="{{producto.photopath}}" alt="">
+    <p>{{producto.Descripcion}}</p>
+    <p>{{producto.quantity}}</p>
+    {%endfor%}
+
+    <p>Resumen de pedido</p>
+    <p>Subtotal {{subtotal}}</p>
+    <p>Total {{total}}</p>
+  <a href="ingresar codigo promocional"></a>
+  <a href="agregar una nota"></a>
+  
+
+{% endblock body %}
