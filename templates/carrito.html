@@ -3,18 +3,7 @@
 {%block css%}
   <link rel="stylesheet" type="text/css" href="{%static 'home.css' %}"/> 
 {% endblock %}
-<<<<<<< HEAD
-{%block title%}Home{%endblock%}
-{%block body%}
 
-  {% for produto in productos%}
-    <img src="{{producto.photoPath}}" alt="">
-    <p>{{producto.Description}}</p>
-    
-  {%endfor%}  
-  {{subtotal}}
-  {{total}}
-=======
 {%block title%}Carrito{%endblock%}
 {%block body%}
 
@@ -30,7 +19,4 @@
     <p>Total {{total}}</p>
   <a href="ingresar codigo promocional"></a>
   <a href="agregar una nota"></a>
-  
-
->>>>>>> 8b0cba60f1799ad0f2d7aa5dc19752f65cadd579
 {% endblock body %}
