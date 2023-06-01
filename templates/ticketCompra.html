@@ -9,9 +9,9 @@
     <p>Tu orden ha sido aceptada</p>
     {% for producto in Products%}
     <img src="{{producto.photopath}}" alt="">
-    <p>{{producto.Descripcion}}</p>
+    <p>{{producto.description}}</p>
     <p>{{producto.quantity}}</p>
-    <p>{{producto.Price}}</p>
+    <p>{{producto.price}}</p>
     {%endfor%}
 
     <p>Resumen de pedido</p>

@@ -9,8 +9,8 @@
 
     <p>Mi carrito </p>
     {% for producto in Products%}
-    <img src="{{producto.photopath}}" alt="">
-    <p>{{producto.Descripcion}}</p>
+    <a href="/busqueda/{{producto.id}}" ><img src="{%static {{producto.photopath}}%}" alt=""></a>
+    <p>{{producto.description}}</p>
     <p>{{producto.quantity}}</p>
     {%endfor%}
 
