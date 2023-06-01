@@ -7,6 +7,7 @@ from .forms import SignUpForm
 from django.contrib.auth.views import LogoutView
 from .forms import LoginForm
 
+
 def identificate(request):
     if request.method == 'POST':
         form = LoginForm(request, data=request.POST)
@@ -14,10 +15,11 @@ def identificate(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(request, username=username, password=password)
+            
             if user is not None:
                 login(request, user)
                 # Autenticación exitosa, redirigir a la página deseada
-                return redirect('principal')
+                return redirect('home')
     else:
         form = LoginForm(request)
     return render(request, 'iniciar_sesion.html', {'form': form})
@@ -33,7 +35,7 @@ class registro(CreateView):
         password = form.cleaned_data.get('password1')
         usuario = authenticate(username=usuario,password=password)
         login(self.request, usuario)
-        return redirect('/')
+        return redirect('/home')
     def userRol(request):
         if request.method=='POST':
             if 'vendedor' in request.POST:

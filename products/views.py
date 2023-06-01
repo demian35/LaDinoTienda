@@ -15,12 +15,14 @@ def busquedaArticulos(request,product):
         return render(request, "product.html", {'product':products})
 def Cart(request,userId):
     cart=Cart.objets.filter(id_convenience_store=userId,bought=False)
+    products=[]
     total=0
     subtotal=total
     for prod in cart:
         product=Products.objects.filter(prod.id_producto)
+        products.append(product)
         total+=product.price*prod.quantity
-    return render (request,"carrito.html",{'cart':cart, 'total':total,'subtotal':subtotal})
+    return render (request,"carrito.html",{'products':products, 'total':total,'subtotal':subtotal})
 
 # def CatalogueFormView(request):
 #     if request.method=="POST":

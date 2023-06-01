@@ -1,22 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import  HttpResponseRedirect
 from .forms import ConvenienceStoreForm , ProvidersForm
 from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import Providers, ConvenienceStore
-from django.contrib.auth.decorators import login_required
 
-@login_required
 def home(request):
-    user_id=request.user.id
-    provider=Providers.objects.filter(user_id=user_id)
-    buyer=ConvenienceStore.objects.filter(user_id=user_id)
-    if provider:
-        if provider.name=="" or :
-        return render(request,"providers_home.html", {"provider":provider})
-    elif buyer:
-        return render(request,"buyer_home.hmtl",{})
-
+    if request.user.is_authenticated:
+        user_id=request.user.id
+        user=request.user.username
+        provider=Providers.objects.filter(user_id=user_id)
+        buyer=ConvenienceStore.objects.filter(user_id=user_id)
+        if provider:
+            return render(request,"home.html", {"provider":provider})
+        elif buyer:
+            return render(request,"home.hmtl",{"buyer":buyer})
+        else:
+            return render(request,"home.html",{"username":user})
+    else:
+        return redirect('identificate')
 def ProvidersFormView(request):
     if request.method=="POST":
         form=ProvidersForm(request.POST)
@@ -37,3 +39,4 @@ def ConvenienceStoreFormView(request):
     else:
         form=ConvenienceStoreForm()
     return render(request, "ConvenienceStoreRegister.html",{'form': form,"title":"Registro de tienda de conveniencia" })
+
