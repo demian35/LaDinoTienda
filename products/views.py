@@ -6,10 +6,14 @@ from django.urls import reverse_lazy
 from .models import Products, Cart
 
 def busquedaArticulos(request,product):
+    categorias=["productos-de-limpieza", "productos-a-granel","cuidado-personal"]
     if product=="0":
         #esto es para cuando proviene del buscador
         product=request.GET["searchProduct"] 
         products=Products.objects.filter(Name__contains=product)
+        return render(request,"products.html",{'products': products, 'query':product,"len":len(products)})
+    elif product in categorias:
+        products=Products.objects.filter(Description__contains=product)
         return render(request,"products.html",{'products': products, 'query':product,"len":len(products)})
     else:
         #esto es cuando viene desde el carrito

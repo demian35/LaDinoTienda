@@ -35,7 +35,7 @@ class registro(CreateView):
         password = form.cleaned_data.get('password1')
         usuario = authenticate(username=usuario,password=password)
         login(self.request, usuario)
-        return redirect('/home')
+        return redirect('home')
     def userRol(request):
         if request.method=='POST':
             if 'vendedor' in request.POST:

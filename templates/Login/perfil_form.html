@@ -92,9 +92,13 @@
     <form class="form" method="POST">
       {% csrf_token %}
       {{ form.username }}
+      {{ form.username.errors }}
       {{ form.email }}
+      {{ form.email.errors }}
       {{ form.password1 }}
+      {{ form.password1.errors }}
       {{ form.password2 }}
+      {{ form.password2.errors }}
     <p>Selecciona el perfil que deseas tener</p>
     <div class="container">
 
