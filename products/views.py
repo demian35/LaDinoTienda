@@ -7,10 +7,12 @@ from .models import Products, Cart
 
 def busquedaArticulos(request,product):
     if product=="0":
+        #esto es para cuando proviene del buscador
         product=request.GET["searchProduct"] 
         products=Products.objects.filter(Name__contains=product)
         return render(request,"products.html",{'products': products, 'query':product,"len":len(products)})
     else:
+        #esto es cuando viene desde el carrito
         products=Products.objects.filter(id_products=product)
         return render(request, "product.html", {'product':products})
 def Cart(request,userId):
