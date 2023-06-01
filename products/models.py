@@ -3,10 +3,10 @@ from django.db import models
 from clients.models import Providers, ConvenienceStore
 
 class Products(models.Model):
-    Name=models.CharField(max_length=20, default="Name", verbose_name="Nombre")
-    Price=models.FloatField(default=0, verbose_name="Precio por mayoreo")
-    Marca=models.CharField(max_length=20,default="Marca",verbose_name="Marca")
-    Description=models.CharField(max_length=50,default="clasificación",verbose_name="Clasificación")
+    name=models.CharField(max_length=20, default="Name", verbose_name="Nombre")
+    price=models.FloatField(default=0, verbose_name="Precio por mayoreo")
+    brand=models.CharField(max_length=20,default="Marca",verbose_name="Marca")
+    description=models.CharField(max_length=50,default="clasificación",verbose_name="Clasificación")
     #esta es la cantidad disponible en tienda
     quantity=models.FloatField(default=0,verbose_name="Cantidad Disponible")
     photoPath=models.CharField(max_length=50, default="", verbose_name="Ruta de foto")

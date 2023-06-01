@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import Products, Cart
 
-def busquedaArticulos(request,product):
+def searchArticles(request,product):
     categorias=["productos-de-limpieza", "productos-a-granel","cuidado-personal"]
     if product=="0":
         #esto es para cuando proviene del buscador
@@ -19,7 +19,7 @@ def busquedaArticulos(request,product):
         #esto es cuando viene desde el carrito
         products=Products.objects.filter(id_products=product)
         return render(request, "product.html", {'product':products})
-def Cart(request,userId):
+def cart(request,userId):
     cart=Cart.objets.filter(id_convenience_store=userId,bought=False)
     products=[]
     total=0
@@ -30,6 +30,9 @@ def Cart(request,userId):
         total+=product.price*prod.quantity
     return render (request,"carrito.html",{'products':products, 'total':total,'subtotal':subtotal})
 
+def productDetail(request, id):
+    product=Products.filter(id=id)
+    return render(request, "detalleProducto.html",{"product":product})
 # def CatalogueFormView(request):
 #     if request.method=="POST":
 #         form=ProductsForm(request.POST)
