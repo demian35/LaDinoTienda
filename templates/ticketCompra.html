@@ -10,13 +10,23 @@
     <h1>Tu orden ha sido aceptada</h1>
     </div>
     <div class="container" id="">
-    {% for producto in Products%}
-    <img src="{{producto.photopath}}" id="articulos">
-    <a href="/busqueda/{{producto.id}}" ><img src="{%static {{producto.photopath}}%}" alt=""></a>
-    <p>{{producto.description}}</p>
-    <p>{{producto.quantity}}</p>
-    <p>{{producto.price}}</p>
-    {%endfor%}
+      <table class="tablaticket">
+        <tr>
+          <th>Producto</th>
+          <th>Descripcion</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+        </tr>
+
+        <tr>
+          {% for producto in Products%}
+          <td> <a href="/busqueda/{{producto.id}}" ><img src="{%static {{producto.photopath}}%}" alt=""></a></td>
+          <td>{{producto.description}}</td>
+          <td>{{producto.quantity}}</td>
+          <td>{{producto.price}}</td>
+          {%endfor%}
+        </tr>
+      </table>
     </div>
 
     <div class="container" id="cuenta">
