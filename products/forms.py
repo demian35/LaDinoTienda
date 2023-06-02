@@ -3,17 +3,20 @@ from .models import Products
 
 
 class ProductsForm(forms.ModelForm):
-    Name=forms.CharField(max_length=20, default="Name", label="Nombre")
-    PricePerMayority=forms.FloatField(min=0,default=0, label="Precio por mayoreo")
-    Marca=forms.CharField(max_length=20,default="Marca",label="Marca")
-    clasification=forms.CharField(max_length=50,default="clasificación",label="Clasificación")
-    quantity=forms.FloatField(min=0,default=0,label="Cantidad Disponible")
+    name = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'placeholder': 'Nombre del producto', 'class': 'rounded-pill py-2 pr-5 mr-1'}), label='Nombre')
+    price = forms.FloatField(min_value=0, widget=forms.NumberInput(attrs={'placeholder': 0, 'class': 'rounded-pill py-2 pr-5 mr-1'}), label='Precio por mayoreo')
+    brand = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'placeholder': 'Marca', 'class': 'rounded-pill py-2 pr-5 mr-1'}), label='Marca')
+    description = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Clasificación', 'class': 'rounded-pill py-2 pr-5 mr-1'}), label='Clasificación')
+    quantity = forms.IntegerField(min_value=0, widget=forms.NumberInput(attrs={'placeholder': 0, 'class': 'rounded-pill py-2 pr-5 mr-1'}), label='Cantidad Disponible')
+    photoPath = forms.ImageField()
+    
     class Meta:
         model = Products
         fields = (
-            "Name",
-            "PricePerMayority",
-            "Marca",
-            "clasification",
-            "quantity",
+            'name',
+            'price',
+            'brand',
+            'description',
+            'quantity',
+            'photoPath',
         )

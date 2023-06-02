@@ -11,8 +11,8 @@
     </div>
     <div class="container" id="">
     {% for producto in Products%}
-    <img src="{{producto.photopath}}" id="articulos">
-    <a href="/busqueda/{{producto.id}}" ><img src="{%static {{producto.photopath}}%}" alt=""></a>
+    <img src="{{producto.photoPath}}" id="articulos">
+    <a href="/busqueda/{{producto.id}}" ><img src="{%static {{producto.photoPath}}%}" alt=""></a>
     <p>{{producto.description}}</p>
     <p>{{producto.quantity}}</p>
     <p>{{producto.price}}</p>

@@ -17,14 +17,15 @@ from django.contrib import admin
 from django.urls import path, re_path
 from clients.views import ProvidersFormView, ConvenienceStoreFormView,home
 from Login.views import registro, identificate, SignOutView, contacto
-from products import productDetail,cart, searchProducts
+from products.views import productDetail,cart, searchProducts
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('registro/', registro.as_view(), name='registro'),
     path('signout/', SignOutView.as_view(), name='signout'), 
-    path("providers/", ProvidersFormView),
-    path("detalle-producto/", productDetail),
-    path("conveniencestore/", ConvenienceStoreFormView),
+    path("providers/", ProvidersFormView,name="Registro de vendedor"),
+    path("carrito/<userId>", cart,name="Carrito"),
+    path("detalle-producto/", productDetail,name="Detalle producto"),
+    path("conveniencestore/", ConvenienceStoreFormView, name="Registro de comprador"),
     re_path("identificate/", identificate, name='identificate'),
     path("",home,name='home' ),
 

@@ -12,7 +12,7 @@
     </div>
     <div class="container" id="carrito">
     {% for producto in Products%}
-    <a href="/busqueda/{{producto.id}}" ><img src="{%static {{producto.photopath}}%}" alt=""></a>
+    <!-- <a href="/busqueda/{{producto.id}}" ><img src="{%static {{producto.photoPath}}%}" alt=""></a> -->
     <p>{{producto.description}}</p>
     <p>{{producto.quantity}}</p>
     {%endfor%}

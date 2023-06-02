@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.http import  HttpResponseRedirect
-from .forms import CatalogueForm
+from .forms import ProductsForm
 from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import Products, Cart
 
-def searchArticles(request,product):
+def searchProducts(request,product):
     categorias=["productos-de-limpieza", "productos-a-granel","cuidado-personal"]
     if product=="0":
         #esto es para cuando proviene del buscador
@@ -20,7 +20,7 @@ def searchArticles(request,product):
         products=Products.objects.filter(id_products=product)
         return render(request, "product.html", {'product':products})
 def cart(request,userId):
-    cart=Cart.objets.filter(id_convenience_store=userId,bought=False)
+    cart = Cart.objects.filter(id_convenience_store=userId, bought=False)
     products=[]
     total=0
     subtotal=total
@@ -28,7 +28,7 @@ def cart(request,userId):
         product=Products.objects.filter(prod.id_producto)
         products.append(product)
         total+=product.price*prod.quantity
-    return render (request,"carrito.html",{'products':products, 'total':total,'subtotal':subtotal})
+    return render (request,"carrito.html",{'cart':cart,'products':products, 'total':total,'subtotal':subtotal})
 
 def productDetail(request, id):
     product=Products.filter(id=id)
