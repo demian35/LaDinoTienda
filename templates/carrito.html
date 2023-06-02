@@ -7,16 +7,25 @@
 {%block title%}Carrito{%endblock%}
 {%block body%}
 
-    <p>Mi carrito </p>
+    <div class="titulocarrito">
+    <h1>Mi carrito </h1>
+    </div>
+    <div class="container" id="carrito">
     {% for producto in Products%}
     <a href="/busqueda/{{producto.id}}" ><img src="{%static {{producto.photopath}}%}" alt=""></a>
     <p>{{producto.description}}</p>
     <p>{{producto.quantity}}</p>
     {%endfor%}
-
+    </div>
+    
+    <div class="container"  id="importetotal" style="background-color: #AB8742;"> 
     <p>Resumen de pedido</p>
     <p>Subtotal {{subtotal}}</p>
     <p>Total {{total}}</p>
+    </div>
+    
+  <div class="container-fluid" id="footer">
   <a href="ingresar codigo promocional"></a>
   <a href="agregar una nota"></a>
+  </div>
 {% endblock body %}

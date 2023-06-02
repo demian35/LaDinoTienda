@@ -8,13 +8,14 @@
 
 <p>Se encontraron {{cantidad}} para {{tipo}} </p>
     {% for producto in Products%}
-    <p>{{producto.name}}</p>
-    <p>{{producto.price}}</p>
+    <h4>{{producto.name}}</h4>
     <p>{{producto.description}}</p>
-    <p>{{producto.quantity}}</p>
-    <p>{{producto.photopath}}</p>
-    <p>{{producto.brand}}</p>
-    <p>{{producto.provider}}</p>
+    <p>{{producto.price}}</p>
+    <a class="btn btn-success"  >
+      <i class="fa-solid fa-list-check"></i>
+      agregar
+    </a>
+
     {%endfor%}
 
 

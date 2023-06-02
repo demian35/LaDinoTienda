@@ -6,19 +6,25 @@
 {%block title%}Orden aceptada{%endblock%}
 {%block body%}
 
-    <p>Tu orden ha sido aceptada</p>
+    <div class="ordenaceptada">
+    <h1>Tu orden ha sido aceptada</h1>
+    </div>
+    <div class="container" id="">
     {% for producto in Products%}
-    <img src="{{producto.photopath}}" alt="">
+    <img src="{{producto.photopath}}" id="articulos">
+    <a href="/busqueda/{{producto.id}}" ><img src="{%static {{producto.photopath}}%}" alt=""></a>
     <p>{{producto.description}}</p>
     <p>{{producto.quantity}}</p>
     <p>{{producto.price}}</p>
     {%endfor%}
+    </div>
 
-    <p>Resumen de pedido</p>
+    <div class="container" id="cuenta">
     <p>Subtotal {{subtotal}}</p>
     <p>Total {{total}}</p>
-  <a href="ingresar codigo promocional"></a>
-  <a href="agregar una nota"></a>
+    </div>
+ 
+  <a href="">Imprimir ticket de compra</a>
   
 
 {% endblock body %}
