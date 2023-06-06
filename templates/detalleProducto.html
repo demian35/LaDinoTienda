@@ -1,0 +1,12 @@
+{%extends "base.html"%} {% load static %} {%block css%}
+<link rel="stylesheet" type="text/css" href="{%static 'home.css' %}" />
+{% endblock %} {%block title%}Detalle producto{%endblock%} {%block body%}
+
+<div class="detalleProducto">
+  <h1>Producto</h1>
+  <h1>{{product.name}}</h1>
+  <p>Imagen 1</p>
+  <p>Imagen 2</p>
+  <p>Imagen 3</p>
+  {% endblock body %}
+</div>
