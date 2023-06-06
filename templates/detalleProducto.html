@@ -19,6 +19,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    text-align: center;
   }
 
   .AgregarProducto {
@@ -27,6 +28,26 @@
     width: 25rem;
     height: 25rem;
     text-align: center;
+    justify-content: space-between;
+  }
+
+  .Buttom {
+    background-color: #ab8742;
+  }
+
+  .ImagenProducto {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .ImagenPrincipal {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .message {
+    margin-top: 8rem;
+    color: white;
   }
 
   input[type="text"] {
@@ -39,24 +60,43 @@
 
 <div class="detalleProducto">
   <div class="imagenLateralContainer">
-    <img src="{% static 'ProductImages/{{product.photoPath}}' %}" />
-    <img src="{% static 'ProductImages/{{product.photoPath}}1' %}" />
-    <img src="{% static 'ProductImages/{{product.photoPath}}2' %}" />
+    <img
+      class="ImagenProducto"
+      src="/static/ProductImages/{{product.photoPath}}"
+    />
+    <img
+      class="ImagenProducto"
+      src="/static/ProductImages/1{{product.photoPath}}"
+    />
+    <img
+      class="ImagenProducto"
+      src="/static/ProductImages/2{{product.photoPath}}"
+    />
   </div>
 
   <div class="ImagenPrincipal">
-    <img src="{% static 'ProductImages/{{product.photoPath}}' %}" />
+    <img src="/static/ProductImages/{{product.photoPath}}" />
   </div>
 
   <div class="InformacionProducto">
-    <p>{{product.name}}</p>
-    <p>{{product.brand}}</p>
+    <h1>{{product.name}}</h1>
+    <h2>{{product.brand}}</h2>
     <p>{{product.description}}</p>
     <p>${{product.price}}</p>
   </div>
 
   <div class="AgregarProducto">
-    <p>Cantidad</p>
+    <p class="message">Cantidad</p>
+    <form>
+      <input
+        type="number"
+        name="numero"
+        id="numero"
+        placeholder="Ingresa un número"
+      />
+      <br />
+      <input class="Buttom" type="submit" value="Agregar al carrito" />
+    </form>
   </div>
 
   <!-- <p>{{product.quantity}}</p>
