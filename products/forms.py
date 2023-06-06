@@ -1,5 +1,5 @@
 from django import forms
-from .models import Products
+from .models import Products, Cart
 
 
 class ProductsForm(forms.ModelForm):
@@ -20,3 +20,12 @@ class ProductsForm(forms.ModelForm):
             'quantity',
             'photoPath',
         )
+class cartForm(forms.ModelForm):
+    class Meta:
+        model = Cart
+        fields = ['quantity']
+    def clean_quantity(self):
+        quantity = self.cleaned_data.get('quantity')
+        if quantity == 0:
+            raise forms.ValidationError("La cantidad no puede ser cero.")
+        return quantity
