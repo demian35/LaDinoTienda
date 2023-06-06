@@ -1,12 +1,66 @@
-{%extends "base.html"%} {% load static %} {%block css%}
+{% extends "base.html" %} {% load static %} {% block css %}
 <link rel="stylesheet" type="text/css" href="{%static 'home.css' %}" />
-{% endblock %} {%block title%}Detalle producto{%endblock%} {%block body%}
+{% endblock %} {% block title %}Detalle producto{% endblock %} {% block body %}
+
+<style>
+  .detalleProducto {
+    display: flex;
+    justify-content: space-between;
+    margin: 5rem;
+  }
+
+  .imagenLateralContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .InformacionProducto {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .AgregarProducto {
+    background-color: #536a44;
+    border-radius: 1rem;
+    width: 25rem;
+    height: 25rem;
+    text-align: center;
+  }
+
+  input[type="text"] {
+    background-color: #8ca87c;
+    border-radius: 50%;
+    padding-top: 10px;
+    text-align: center;
+  }
+</style>
 
 <div class="detalleProducto">
-  <h1>Producto</h1>
-  <h1>{{product.name}}</h1>
-  <p>Imagen 1</p>
-  <p>Imagen 2</p>
-  <p>Imagen 3</p>
+  <div class="imagenLateralContainer">
+    <img src="{% static 'ProductImages/{{product.photoPath}}' %}" />
+    <img src="{% static 'ProductImages/{{product.photoPath}}1' %}" />
+    <img src="{% static 'ProductImages/{{product.photoPath}}2' %}" />
+  </div>
+
+  <div class="ImagenPrincipal">
+    <img src="{% static 'ProductImages/{{product.photoPath}}' %}" />
+  </div>
+
+  <div class="InformacionProducto">
+    <p>{{product.name}}</p>
+    <p>{{product.brand}}</p>
+    <p>{{product.description}}</p>
+    <p>${{product.price}}</p>
+  </div>
+
+  <div class="AgregarProducto">
+    <p>Cantidad</p>
+  </div>
+
+  <!-- <p>{{product.quantity}}</p>
+  <p>{{product.photoPath}}</p>
+  <p>{{product.provider}}</p> -->
   {% endblock body %}
 </div>
