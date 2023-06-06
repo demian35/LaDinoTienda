@@ -9,7 +9,6 @@
     <div class="ordenaceptada">
     <h1>Tu orden ha sido aceptada</h1>
     </div>
-<<<<<<< HEAD
     <div class="container" id="">
     {% for producto in Products%}
     <img src="{{producto.photoPath}}" id="articulos">
@@ -18,26 +17,6 @@
     <p>{{producto.quantity}}</p>
     <p>{{producto.price}}</p>
     {%endfor%}
-=======
-    <div class="container" id="ticketcompra">
-      <table class="tablaticket">
-        <tr>
-          <th>Producto</th>
-          <th>Descripcion</th>
-          <th>Cantidad</th>
-          <th>Precio</th>
-        </tr>
-
-        <tr>
-          {% for producto in Products%}
-          <td> <a href="/busqueda/{{producto.id}}" ><img src="{%static {{producto.photopath}}%}" alt=""></a></td>
-          <td>{{producto.description}}</td>
-          <td>{{producto.quantity}}</td>
-          <td>{{producto.price}}</td>
-          {%endfor%}
-        </tr>
-      </table>
->>>>>>> c6fdcec4d8cd4c1ddfb720f0b016d0525829268e
     </div>
 
     <div class="container" id="cuenta">

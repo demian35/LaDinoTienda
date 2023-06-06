@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="base.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/a59296a4c2.js" crossorigin="anonymous"></script>
+    <title>Vista html</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" id="logo" href="#"><Img src="{%static 'empresaurios-removebg-preview 3.svg' %}" ></Img></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a>
+        Hola, username
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Busca tus articulos" aria-label="Busca tus articulos">
+          <button class="btn btn-outline-success" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+        <a>
+          <i class="fa-sharp fa-light fa-cart-shopping-fast" style="color: blue;"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+  <!-- Comienza código a copiar en template -->
+  <div class="container mt-5">
+    <div class="row">
+        <div class="col-4">
+            <img src="images/dino.png" alt="dino" style="height: 550px;">
+        </div>
+        <div class="col-8">
+            <div class="rounded-3 p-4" style="background-color: bisque;">
+                <h1 class="text-center">
+                    Conoce los beneficios de pertenercer a nuestra comunidad de dinosocios.
+                </h1>
+                <div class="container p-5">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h3 class="text-center">
+                                Disfruta del cobro de una comisión del sólo 15% por venta.
+                            </h3>
+                            <img src="images/flecha.jpeg" alt="flecha" class="d-block mx-auto mt-2" style="width: 100px;">
+                            <button type="button" class="btn btn-primary mt-3 d-block mx-auto">Quiero ser dinosocio</button>
+                        </div>
+                        <div class="col-sm">
+                            <h4 class="text-center">
+                                Obtén más alcance publicitario en nuestra página para que más personas conozcan tu tienda.
+                            </h4>
+                            <img src="images/alianza.png" alt="flecha" class="d-block mx-auto mt-2" style="width: 145px;">
+                            <button type="button" class="btn btn-secondary mt-3 d-block mx-auto">Quzás más tarde</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- Termina código a copiar en template -->
+</body>
+</html>
