@@ -12,9 +12,14 @@
     </div>
     <div class="container" id="carrito">
     {% for producto in products%}
-    <a href="/busqueda/{{producto.id}}" ><img src="{%static '{{producto.photoPath}}'%}" alt=""></a> 
+    <img src="/static/ProductImages{{producto.photoPath.url }}">
+    <p> {{producto.photoPath}} </p>
     <p>{{producto.description}}</p>
     <p>{{producto.quantity}}</p>
+    
+    {%endfor%}
+    {% for form in forms%}
+    <p>{{form}}</p>
     {%endfor%}
     </div>
     

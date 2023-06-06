@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import  HttpResponseRedirect
 from .forms import ProductsForm
 from django.contrib import messages
@@ -31,29 +31,32 @@ def searchProducts(request,product):
         products=Products.objects.filter(id_products=product)
         return render(request, "product.html", {'product':products})
 
-def cart(request,userId):
-    
-    if request.method =='POST':
+
+
+def cart(request, userId):
+    if request.method == 'POST':
+        # Lógica para manejar el formulario POST si es necesario
         pass
     else:
         cart = Cart.objects.filter(id_convenience_store=userId, bought=False)
-        products=[]
-        forms=[]
-        total=0
+        products = []
+        forms = []
+        total = 0
         
         for prod in cart:
-            if prod.quantity==0:
-                #solo para evitar bugs
-                obj = Cart.objects.get(id=prod.id)      
-                obj.delete()
-            
-            product=Products.objects.get(id=prod.id)
-            newProduct=cartProductTemplate(id=prod.id,name=product.name,photoPath=product.photoPath,quantity=prod.quantity)
-            products.append(newProduct)
-            form=cartForm(initial={'quantity': newProduct.quantinty})
-            forms.append(form)
-            total+=product.price*prod.quantity
-    return render (request,"carrito.html",{'cart':cart,'products':products, 'total':total})
+            if prod.quantity == 0:
+                # Eliminar el objeto del carrito si la cantidad es cero
+                prod.delete()
+            else:
+                product = get_object_or_404(Products, id=prod.id)
+                newProduct = cartProductTemplate(id=prod.id, name=product.name, photoPath=product.photoPath, quantity=prod.quantity, description=product.description)
+                products.append(newProduct)
+                form = cartForm(initial={'quantity': prod.quantity})
+                forms.append(form)
+                total += product.price * prod.quantity
+                
+    return render(request, "carrito.html", {'products': products, 'total': total, 'forms': forms})
+
 
 def productDetail(request, id):
     product = Products.objects.get(id=id)
