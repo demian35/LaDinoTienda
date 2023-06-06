@@ -6,17 +6,18 @@ from django.urls import reverse_lazy
 from .models import Products, Cart
 from .forms import cartForm, Products
 class cartProductTemplate:
-    def __init__(self,id,name,photoPath,quantity):
+    def __init__(self,id,name,photoPath,quantity,description):
         self.id=id
         self.name=name
         self.photoPath=photoPath
         self.quantinty=quantity
+        self.description=description
     def increseQuantity(self, newQuantity):
         self.quantity+=newQuantity
     def decreseQuantity(self,newQuantity):
         self.quantinty-=newQuantity
-def searchProducts(request,product):
-    categorias=["productos-de-limpieza", "productos-a-granel","cuidado-personal"]
+def searchProducts(request,product):    
+    categorias=["producto de limpieza", "producto a granel","cuidado personal"]
     if product=="0":
         #esto es para cuando proviene del buscador
         product=request.GET["searchProduct"] 
@@ -39,18 +40,16 @@ def cart(request,userId):
         products=[]
         forms=[]
         total=0
-        if cart.not_exists():
-            return
-            
+        
         for prod in cart:
             if prod.quantity==0:
                 #solo para evitar bugs
                 obj = Cart.objects.get(id=prod.id)      
                 obj.delete()
-
-            product=Products.objects.filter(prod.id)
-            newProduct=cartProductTemplate(id=product.id,name=product.name,photoPath=product.photopath,quantity=prod.quantity)
-            products.append(product)
+            
+            product=Products.objects.get(id=prod.id)
+            newProduct=cartProductTemplate(id=prod.id,name=product.name,photoPath=product.photoPath,quantity=prod.quantity)
+            products.append(newProduct)
             form=cartForm(initial={'quantity': newProduct.quantinty})
             forms.append(form)
             total+=product.price*prod.quantity

@@ -11,8 +11,8 @@
     <h1>Mi carrito </h1>
     </div>
     <div class="container" id="carrito">
-    {% for producto in Products%}
-    <!-- <a href="/busqueda/{{producto.id}}" ><img src="{%static {{producto.photoPath}}%}" alt=""></a> -->
+    {% for producto in products%}
+    <a href="/busqueda/{{producto.id}}" ><img src="{%static '{{producto.photoPath}}'%}" alt=""></a> 
     <p>{{producto.description}}</p>
     <p>{{producto.quantity}}</p>
     {%endfor%}
