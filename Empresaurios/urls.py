@@ -26,8 +26,8 @@ urlpatterns = [
     
     path("providers/", ProvidersFormView,name="Registro de vendedor"),
     path("carrito/<userId>", cart,name="Carrito"),
-    path("detalle-producto/", productDetail,name="Detalle producto"),
+    path("detalle-producto/<id>", productDetail,name="Detalle producto"),
+    path("nuevo-producto", productDetail,name="Detalle producto"),
     path("conveniencestore/", ConvenienceStoreFormView, name="Registro de comprador"),
     path("",home,name='home' ),
-
 ]

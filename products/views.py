@@ -59,7 +59,7 @@ def cart(request, userId):
 
 
 def productDetail(request, id):
-    product=Products.filter(id=id)
+    product = Products.objects.get(id=id)
     return render(request, "detalleProducto.html",{"product":product})
 # def CatalogueFormView(request):
 #     if request.method=="POST":
