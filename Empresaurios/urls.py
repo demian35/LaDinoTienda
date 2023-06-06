@@ -22,11 +22,12 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('registro/', registro.as_view(), name='registro'),
     path('signout/', SignOutView.as_view(), name='signout'), 
+    re_path("identificate/", identificate, name='identificate'),
+    
     path("providers/", ProvidersFormView,name="Registro de vendedor"),
     path("carrito/<userId>", cart,name="Carrito"),
     path("detalle-producto/", productDetail,name="Detalle producto"),
     path("conveniencestore/", ConvenienceStoreFormView, name="Registro de comprador"),
-    re_path("identificate/", identificate, name='identificate'),
     path("",home,name='home' ),
 
 ]

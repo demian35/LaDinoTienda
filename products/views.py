@@ -4,7 +4,17 @@ from .forms import ProductsForm
 from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import Products, Cart
-
+from .forms import cartForm, Products
+class cartProductTemplate:
+    def __init__(self,id,name,photoPath,quantity):
+        self.id=id
+        self.name=name
+        self.photoPath=photoPath
+        self.quantinty=quantity
+    def increseQuantity(self, newQuantity):
+        self.quantity+=newQuantity
+    def decreseQuantity(self,newQuantity):
+        self.quantinty-=newQuantity
 def searchProducts(request,product):
     categorias=["productos-de-limpieza", "productos-a-granel","cuidado-personal"]
     if product=="0":
@@ -19,16 +29,32 @@ def searchProducts(request,product):
         #esto es cuando viene desde el carrito
         products=Products.objects.filter(id_products=product)
         return render(request, "product.html", {'product':products})
+
 def cart(request,userId):
-    cart = Cart.objects.filter(id_convenience_store=userId, bought=False)
-    products=[]
-    total=0
-    subtotal=total
-    for prod in cart:
-        product=Products.objects.filter(prod.id_producto)
-        products.append(product)
-        total+=product.price*prod.quantity
-    return render (request,"carrito.html",{'cart':cart,'products':products, 'total':total,'subtotal':subtotal})
+    
+    if request.method =='POST':
+        pass
+    else:
+        cart = Cart.objects.filter(id_convenience_store=userId, bought=False)
+        products=[]
+        forms=[]
+        total=0
+        if cart.not_exists():
+            return
+            
+        for prod in cart:
+            if prod.quantity==0:
+                #solo para evitar bugs
+                obj = Cart.objects.get(id=prod.id)      
+                obj.delete()
+
+            product=Products.objects.filter(prod.id)
+            newProduct=cartProductTemplate(id=product.id,name=product.name,photoPath=product.photopath,quantity=prod.quantity)
+            products.append(product)
+            form=cartForm(initial={'quantity': newProduct.quantinty})
+            forms.append(form)
+            total+=product.price*prod.quantity
+    return render (request,"carrito.html",{'cart':cart,'products':products, 'total':total})
 
 def productDetail(request, id):
     product=Products.filter(id=id)
