@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, re_path
 from clients.views import ProvidersFormView, ConvenienceStoreFormView,home
 from Login.views import registro, identificate, SignOutView, contacto, registroComprador, registroVendedor
-from products.views import productDetail,cart, searchProducts
+from products.views import productDetail,cart, searchProducts, ProductsFormView
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('registro/', registro.as_view(), name='registro'),
@@ -27,7 +27,7 @@ urlpatterns = [
     path("providers/", ProvidersFormView,name="Registro de vendedor"),
     path("carrito/<userId>", cart,name="Carrito"),
     path("detalle-producto/<id>", productDetail,name="Detalle producto"),
-    path("nuevo-producto", productDetail,name="Detalle producto"),
+    path("nuevo-producto", ProductsFormView,name="Nuevo producto"),
     path("conveniencestore/", ConvenienceStoreFormView, name="Registro de comprador"),
     path("",home,name='home' ),
     path('registroComprador/', registroComprador, name='Registro Comprador'),

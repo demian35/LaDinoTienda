@@ -58,8 +58,21 @@ def cart(request, userId):
     return render(request, "carrito.html", {'products': products, 'total': total, 'forms': forms})
 
 
+
 def productDetail(request, id):
+    user_id=request.user.id
     product = Products.objects.get(id=id)
+    if request.method=="POST":
+        form=cartForm(request.POST)
+        if form.is_valid():
+            product=form.save()
+            messages.add_message(request, messages.SUCCESS, 'Registro exitoso')
+            return HttpResponseRedirect(reverse_lazy('Carrito', args=[user_id]))
+    else:
+        form=cartForm()
+    return render(request, "detalleProducto.html",{"product":product, "form":form})
+    
+    
     
 def ProductsFormView(request):
     if request.method=="POST":
