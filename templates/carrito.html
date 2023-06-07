@@ -6,27 +6,68 @@
 
 {%block title%}Carrito{%endblock%}
 {%block body%}
+    <style>
+      .container-md img {
+        width: 20%;
+      }
+      #carrito{
+        border-top: solid black 2;
+        border-bottom: solid black 2;
+        display: flex;
+        grid-template-columns: repeat(2,1fr );
+        height: 60vh;
+        overflow: auto;
+      }
+      
+      #importetotal{
+        width: 500px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        float: right;
+      }
+      #footer{
+        width: 100%;
+        position: fixed;
+        display: flex;
+        align-items: start;
+        flex-direction: column;
+      }
+      p input{
+        width: 20%;
+        
+        text-align: center;
+        border: solid black 1px;
+      }
 
+      
+
+      
+
+    </style>
     <div class="titulocarrito">
     <h1>Mi carrito </h1>
     </div>
-    <div class="container" id="carrito">
-    {% for producto in products%}
-    <img src="/static/ProductImages{{producto.photoPath.url }}">
-    <p> {{producto.photoPath}} </p>
-    <p>{{producto.description}}</p>
-    <p>{{producto.quantity}}</p>
+    <div class="container-md" id="carrito">
     
-    {%endfor%}
-    {% for form in forms%}
-    <p>{{form}}</p>
-    {%endfor%}
-    </div>
-    
-    <div class="container"  id="importetotal" style="background-color: #AB8742;"> 
-    <p>Resumen de pedido</p>
-    <p>Subtotal {{subtotal}}</p>
-    <p>Total {{total}}</p>
+      <div class="col " >      
+        {% for producto in products%}
+        <img src="/static/ProductImages{{producto.photoPath.url }}">        
+        <p>{{producto.description}}</p>        
+        {%endfor%}
+      </div>
+      <div class="col" >
+        {% for form in forms%}
+        <p>{{form.quantity}}</p>
+        {%endfor%}
+      </div>
+    </div>    
+    <div class="container rounded-3"  id="importetotal" style="background-color: #AB8742;"> 
+      <p>Resumen de pedido</p>
+      <p>Subtotal {{total}}</p>
+      <p>Total {{total}}</p>
     </div>
     
   <div class="container-fluid" id="footer">
