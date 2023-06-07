@@ -46,3 +46,7 @@ class registro(CreateView):
 
 def contacto (request):
     return render(request,"contacto.html",{})
+
+def registroComprador(request):
+    username = request.user.username
+    return render(request, "registroComprador.html", {'username': username})
