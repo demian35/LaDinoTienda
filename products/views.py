@@ -4,7 +4,7 @@ from .forms import ProductsForm
 from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import Products, Cart
-from .forms import cartForm, Products
+from .forms import cartForm, ProductsForm
 class cartProductTemplate:
     def __init__(self,id,name,photoPath,quantity,description):
         self.id=id
@@ -60,14 +60,14 @@ def cart(request, userId):
 
 def productDetail(request, id):
     product = Products.objects.get(id=id)
-    return render(request, "detalleProducto.html",{"product":product})
-# def CatalogueFormView(request):
-#     if request.method=="POST":
-#         form=ProductsForm(request.POST)
-#         if form.is_valid():
-#             product=form.save()
-#             messages.add_message(request, messages.SUCCESS, 'Registro exitoso')
-#             return HttpResponseRedirect(reverse_lazy('CatalogueFormView', args=[provider.id]))
-#     else:
-#         form=ProductsForm()
-#     return render(request, "CatalogueRegister.html", {'form':form})
+    
+def ProductsFormView(request):
+    if request.method=="POST":
+        form=ProductsForm(request.POST)
+        if form.is_valid():
+            product=form.save()
+            messages.add_message(request, messages.SUCCESS, 'Registro exitoso')
+            return HttpResponseRedirect(reverse_lazy('CatalogueFormView', args=[provider.id]))
+    else:
+        form=ProductsForm()
+    return render(request, "ProductsForm.html", {'form':form})
