@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from clients.views import ProvidersFormView, ConvenienceStoreFormView,home
-from Login.views import registro, identificate, SignOutView, contacto, registroComprador
+from Login.views import registro, identificate, SignOutView, contacto, registroComprador, registroVendedor
 from products.views import productDetail,cart, searchProducts
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -31,4 +31,5 @@ urlpatterns = [
     path("conveniencestore/", ConvenienceStoreFormView, name="Registro de comprador"),
     path("",home,name='home' ),
     path('registroComprador/', registroComprador, name='Registro Comprador'),
+    path('registroVendedor/', registroVendedor, name='Registro Vendedor'),
 ]
