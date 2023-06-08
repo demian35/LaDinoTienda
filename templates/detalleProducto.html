@@ -31,8 +31,9 @@
     justify-content: space-between;
   }
 
-  .btn {
+  .DinoButtom {
     background-color: #ab8742;
+    margin-top: 2rem;
   }
 
   .ImagenProducto {
@@ -43,10 +44,12 @@
   .ImagenPrincipal {
     width: 15rem;
     height: 15rem;
+    margin-top: 3rem;
   }
 
   .message {
-    margin-top: 8rem;
+    margin-top: 6rem;
+    margin-bottom: 2rem;
     color: white;
   }
 
@@ -86,23 +89,13 @@
   </div>
 
   <div class="AgregarProducto">
-    <p class="message">Cantidad</p>
+    <h1 class="message">Cantidad</h1>
     <form class="form" method="POST">
       {% csrf_token %}
       {{form.quantity}}
       <br/>
-      <input class="btn" type="submit" value="Agregar al carrito" />
-
-    <!-- <form>
-      <input
-        type="number"
-        name="numero"
-        id="numero"
-        placeholder="Ingresa un número"
-      />
-      <br />
-      <input class="Buttom" type="submit" value="Agregar al carrito" />
-    </form> -->
+      <!-- <input class="btn" type="submit" value="Agregar al carrito" /> -->
+      <input class="DinoButtom" type="submit" value="Agregar al carrito" />
   </div>
 
   <!-- <p>{{product.quantity}}</p>
