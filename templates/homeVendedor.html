@@ -1,0 +1,33 @@
+{%extends "base.html"%}
+{% load static %}
+{%block css%}
+  <link rel="stylesheet" type="text/css" href="{%static 'home.css' %}"/> 
+  
+{% endblock %}
+{%block title%}Home{%endblock%}
+{%block body%}
+
+<!-- Comienza código a copiar en template -->
+
+<h1 class="d-block text-center mt-5">Bienvenido {{username}}</h1>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-sm">
+            <div class="p-5">
+                <a href="#" class="text-center d-block p-5 rounded-3" style="text-decoration:none; background-image: url({% static 'piedrascafes.jpeg' %}); background-size: cover;">
+                    <h2 class="text-white display-3">Registrar producto</h2>
+                </a>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="p-5">
+                <a href="#" class="text-center d-block p-5 rounded-3" style="text-decoration:none; background-image: url({% static 'piedras.jpg' %}); background-size: cover;">
+                    <h2 class="text-white display-3">Consultar pedidos</h2>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Termina código a copiar en template -->
+
+{% endblock body %}
