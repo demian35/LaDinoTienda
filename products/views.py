@@ -116,7 +116,8 @@ def ticket (request, userId):
     if request.user.is_authenticated:
         user=request.user.username
         cart = Cart.objects.filter(id_convenience_store=userId, bought=False)
-        return render(request, "ticketCompra.html",{"username":user, "Objects": cart})
+        print(userId)
+        return render(request, "ticketCompra.html",{"username":user,"userid":userId, "Objects": cart})
     else:
         return redirect('identificate')
     
