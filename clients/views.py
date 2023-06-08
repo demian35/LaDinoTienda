@@ -12,7 +12,8 @@ def home(request):
         provider=Providers.objects.filter(user_id=user_id)
         buyer=ConvenienceStore.objects.filter(user_id=user_id)
         if provider:
-            return render(request,"homeVendedor.html", {"username":user,"profile":True})
+
+            return render(request,"homeVendedor.html", {"username":user,"profile":True, "suscribe": provider[0].is_suscribed})
         elif buyer:
             return render(request,"homeComprador.html",{"username":user,"profile":False})
         else:

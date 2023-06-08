@@ -7,10 +7,17 @@
 {%block title%}Home{%endblock%}
 {%block body%}
 
+<style>
+    #principal{
+        display: flex;
+        flex-direction: column;
+    }
+</style>
+
 <!-- Comienza código a copiar en template -->
 
 <h1 class="d-block text-center mt-5">Bienvenido {{username}}</h1>
-<div class="container mt-3">
+<div id="principal" class="container mt-3">
     <div class="row">
         <div class="col-sm">
             <div class="p-5">
@@ -27,7 +34,12 @@
             </div>
         </div>
     </div>
+    {%if suscribe%}
+    {%include "suscripcion.html"%}
+    {%endif%}
 </div>
+
+
 <!-- Termina código a copiar en template -->
 
 {% endblock body %}
