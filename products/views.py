@@ -58,6 +58,7 @@ def cart(request, userId):
     return render(request, "carrito.html", {'products': products, 'total': total, 'forms': forms})
 
 
+
 def productDetail(request, id):
     user_id=request.user.id
     product = Products.objects.get(id=id)
@@ -70,6 +71,11 @@ def productDetail(request, id):
     else:
         form=cartForm()
     return render(request, "detalleProducto.html",{"product":product, "form":form})
+<<<<<<< HEAD
+=======
+    
+    
+>>>>>>> 19dfec78e05ba1257d62066721688aecdf72e7be
     
 def ProductsFormView(request):
     if request.method=="POST":

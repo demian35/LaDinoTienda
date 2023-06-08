@@ -1,0 +1,169 @@
+{%extends "base.html"%}
+{% load static %}
+{%block css%}
+    
+<link rel="stylesheet" type="text/css" href="{%static 'home.css' %}"/> 
+  
+{% endblock %}
+{%block title%}Home{%endblock%}
+{%block body%}
+        <style>
+            .compradorDerecha{
+                text-align: right;
+                margin-right: 50px;
+            }
+
+            .container {
+                display: flex;
+                height: 400px;
+                
+            }
+
+            .column-1 {
+                flex: 1; 
+                background-color: #AB8742; 
+                margin-right: 50px;
+                border-radius: 20px;
+            }
+
+            .column-2 {
+                flex: 1; 
+                background-color: #AB8742; 
+                margin-right: 50px;
+                border-radius: 20px;
+            }
+
+            .column-3 {
+                flex: 1; 
+                background-color: #ffffff; 
+                border-radius: 20px;
+            }
+            .centrarDiv{
+                display: flex;
+                justify-content: center;
+            }
+
+            .centrarTexto{
+                text-align: center;
+            }
+
+            .top{
+                margin-top: 40px;
+            }
+
+            .bottom{
+                position: absolute;
+                bottom: 0;
+            }
+
+            .centrar{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .tamañoDiv{
+                height: 50px;
+            }
+
+            .tamañoDiv2{
+                height: 200px;
+            }
+
+            .colorInput{
+                background-color: #8CA87C;
+                border-radius: 10px;
+            }
+
+            .colorTextoNegro{
+                color: black;
+            }
+
+            ::placeholder{
+                color: black;
+            }
+
+            .tamañoBoton{
+                height: 50px;
+                width: 200px;
+            }
+            
+            .centrarImg{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+            }
+
+        </style>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+        <h1 class="compradorDerecha">Vendedor</h1>
+
+        <div class="container">
+            <div class="column-1">
+                
+                <div class="centrarDiv top tamañoDiv">
+                    <input class="centrarTexto colorInput colorTextoNegro" type="text" placeholder="Nombre">
+                </div>
+
+                <div class="centrarDiv top tamañoDiv">
+                    <input class="centrarTexto colorInput colorTextoNegro" type="text" placeholder="Apellido">
+                </div>
+
+                <div class="centrarDiv top tamañoDiv">
+                    <input class="centrarTexto colorInput colorTextoNegro" type="text" placeholder="Telefono">
+                </div>
+
+                <div class="centrarDiv top tamañoDiv">
+                    <input class="centrarTexto colorInput colorTextoNegro" type="text" placeholder="Empresa">
+                </div>
+            </div>
+
+            <div class="column-2">
+                
+                <div class="centrarDiv centrar tamañoDiv2">
+                    <input class="centrarTexto colorInput colorTextoNegro" style="height: 100px; width: 250px;" type="text" placeholder="Descripción">                    
+                </div>
+
+                <div class=" tamañoDiv2">
+                    
+                    <h4 style="text-align: center; ">Subir logo de la Empresa</h4>
+
+                    <div class="centrarImg" style="margin-bottom: 15px;">
+                        <img style="width: 100px; height: 100px;" src="{% static 'imgVendedor.png'%}" alt="Empresa Vendedor">
+                    </div>
+
+                    <div class="centrarImg">
+                        <input type="file" id="imagenInput" accept="image/*">
+                    </div>
+                    
+                    <script>
+                        const imagenInput = document.getElementById('imagenInput');
+                        const vistaPrevia = document.getElementById('vistaPrevia');
+                    
+                        imagenInput.addEventListener('change', function() {
+                            const archivo = imagenInput.files[0];
+                            const lector = new FileReader();
+                            lector.onload = function(e) {
+                                const imagen = document.createElement('img');
+                                imagen.src = e.target.result;
+                                vistaPrevia.innerHTML = '';
+                                vistaPrevia.appendChild(imagen);
+                            }
+                            
+                            lector.readAsDataURL(archivo);
+                        });
+                    </script>
+                </div>
+
+            </div>
+            <div class="column-3 centrar">
+                <div class="centrarDiv bottom">
+                    <input class="centrarTexto colorInput colorTextoNegro tamañoBoton" style="margin-bottom: 50px;" type="button" value="Siguiente">
+                </div>
+            </div>
+          </div>
+        
+{% endblock body %}

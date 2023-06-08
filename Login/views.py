@@ -50,3 +50,7 @@ def contacto (request):
 def registroComprador(request):
     username = request.user.username
     return render(request, "registroComprador.html", {'username': username})
+
+def registroVendedor(request):
+    username = request.user.username
+    return render(request, "registroVendedor.html", {'username': username})

@@ -1,15 +1,94 @@
-{%extends "base.html"%}
-{%block title%}
-    Registro Catalogo
-{%endblock%}
-{%block body%}
+{% extends "base.html" %} {% load static %} {% block css %}
+<link rel="stylesheet" type="text/css" href="{%static 'home.css' %}" />
+{% endblock %} {% block title %}Nuevo producto{% endblock %} {% block body %}
 
+<style>
+  input[type="text"] {
+    background-color: #8ca87c;
+    border-radius: 50%;
+    padding-top: 10px;
+    text-align: center;
+  }
+  input[type="number"] {
+    background-color: #8ca87c;
+    border-radius: 50%;
+    padding-top: 10px;
+    text-align: center;
+  }
+  .AgregarProducto {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    background-color: #d9c9b9;
+    width: 60rem;
+    height: 35rem;
+    border-radius: 1rem;
+  }
+  .AgregarProductoNuevo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    margin: 5rem;
+  }
+  .ContenedorPrincipal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    margin: 5rem;
+  }
+  .DinoImagen {
+    width: 35rem;
+    height: 35rem;
+    border-radius: 1rem;
+  }
+  .DinoForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 6rem;
+    padding: 6rem;
+  }
+  .AddPhoto {
+    display: flex;
+    width: 15rem;
+    height: 15rem;
+  }
+</style>
 
+<div class="ContenedorPrincipal">
+  <div>
+    <h1>Nuevo producto</h1>
+    <i class="fa-solid fa-rectangle-history-circle-plus"></i>
+  </div>
+  <div class="AgregarProductoNuevo">
+    <div class="AgregarProducto">
+      <form class="DinoForm" method="POST">
+        {% csrf_token %}
+        <div>
+          <!-- <img src="/static/add.svg" onchange="{{ form.photoPath }}" /> -->
+          {{ form.photoPath }}
+        </div>
+        <div>{{ form.name }} {{ form.price }}</div>
+        <div>{{ form.brand }} {{ form.quantity }}</div>
+        <div>{{ form.description }}</div>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+    <div>
+      <img class="DinoImagen" src="/static/DinoProductoNuevo.jpg" />
+    </div>
+  </div>
+</div>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Enviar</button>
-</form>
+<script>
+  photo = document.getElementById("id_photoPath");
+  icon = document.createElement("i");
+  icon.class = "fa-regular fa-rectangle-history-circle-plus";
+  photo.appendChild(icon);
+</script>
 
 {%endblock%}

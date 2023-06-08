@@ -31,7 +31,7 @@
     justify-content: space-between;
   }
 
-  .Buttom {
+  .btn {
     background-color: #ab8742;
   }
 
@@ -82,12 +82,18 @@
     <h1>{{product.name}}</h1>
     <h2>{{product.brand}}</h2>
     <p>{{product.description}}</p>
-    <p>${{product.price}}</p>
+    <p><!-- <img src="/static/pesos.svg" /> -->${{product.price}}</p>
   </div>
 
   <div class="AgregarProducto">
     <p class="message">Cantidad</p>
-    <form>
+    <form class="form" method="POST">
+      {% csrf_token %}
+      {{form.quantity}}
+      <br/>
+      <input class="btn" type="submit" value="Agregar al carrito" />
+
+    <!-- <form>
       <input
         type="number"
         name="numero"
@@ -96,7 +102,7 @@
       />
       <br />
       <input class="Buttom" type="submit" value="Agregar al carrito" />
-    </form>
+    </form> -->
   </div>
 
   <!-- <p>{{product.quantity}}</p>
