@@ -6,28 +6,107 @@
 
 {%block title%}Carrito{%endblock%}
 {%block body%}
+    <style>
+      .container-fluid .content{
+        display: flex;
+        flex-direction: row;
+      }
+      .container-md img {
+        display: flex;
+        flex-direction: row;
+        width: 100px;
+        height: 110px;
+        
+      }
 
+       table {
+        margin-left: 5px;
+        width: 100%;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        
+      }
+      h1{
+        text-align: center;
+      }
+      
+      #carrito{
+        border-top: solid black 2px;
+        border-bottom: solid black 2px;
+        width: 72%;
+        height: 55vh;
+        overflow: auto;
+        float: left;
+        margin-left: 40px;
+        overflow-x: hidden;
+      }
+      
+      #importetotal{
+        width: 200px;
+        height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        float: right;
+        margin-right: 50px;
+      }
+      #footer{
+        width: 100%;
+        position: fixed;
+        display: flex;
+        align-items: start;
+        flex-direction: column;
+      }
+      tr input{
+
+        width: 50px;
+        text-align: center;
+        border: solid black 1px;
+        margin-top: 40px;
+        margin-bottom: 40px; 
+      }
+      table{
+        width: 100%;
+      }
+      .container .total{
+        display: flex;
+        flex-direction: row;
+
+      }
+    </style>
     <div class="titulocarrito">
     <h1>Mi carrito </h1>
     </div>
-    <div class="container" id="carrito">
-    {% for producto in products%}
-    <img src="/static/ProductImages{{producto.photoPath.url }}">
-    <p> {{producto.photoPath}} </p>
-    <p>{{producto.description}}</p>
-    <p>{{producto.quantity}}</p>
-    
-    {%endfor%}
-    {% for form in forms%}
-    <p>{{form}}</p>
-    {%endfor%}
+    <div class="container-fluid content">
+
+
+    <div class="container-md" id="carrito">
+      <table class="tablacarrito">
+        {% for producto in products%}
+          <tr>       
+            <td><img src="/static/ProductImages{{producto.photoPath.url }}"></td>  
+            <td>{{producto.description}}</td>        
+            <td>{{producto.form.quantity}}</td>
+          </tr>
+        {%endfor%}
+        
+      </table>
+      
+    </div>    
+    <div class="container rounded-3"  id="importetotal" style="background-color: #AB8742;"> 
+      <h4>Resumen de pedido</h4>
+      <div class="container total">  
+        <h5>Subtotal  </h5>
+        <p>{{total}}</p>
+      </div>
+      <div class="container total">
+        <h5>Total  </h5>
+        <p>{{total}}</p>  
+      </div>
     </div>
-    
-    <div class="container"  id="importetotal" style="background-color: #AB8742;"> 
-    <p>Resumen de pedido</p>
-    <p>Subtotal {{subtotal}}</p>
-    <p>Total {{total}}</p>
-    </div>
+  </div>
     
   <div class="container-fluid" id="footer">
   <a href="ingresar codigo promocional"></a>

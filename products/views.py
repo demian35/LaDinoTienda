@@ -6,12 +6,13 @@ from django.urls import reverse_lazy
 from .models import Products, Cart
 from .forms import cartForm, ProductsForm
 class cartProductTemplate:
-    def __init__(self,id,name,photoPath,quantity,description):
+    def __init__(self,id,name,photoPath,quantity,description,form):
         self.id=id
         self.name=name
         self.photoPath=photoPath
         self.quantinty=quantity
         self.description=description
+        self.form=form
     def increseQuantity(self, newQuantity):
         self.quantity+=newQuantity
     def decreseQuantity(self,newQuantity):
@@ -49,25 +50,35 @@ def cart(request, userId):
                 prod.delete()
             else:
                 product = get_object_or_404(Products, id=prod.id)
-                newProduct = cartProductTemplate(id=prod.id, name=product.name, photoPath=product.photoPath, quantity=prod.quantity, description=product.description)
+                newform = cartForm(initial={'quantity': prod.quantity})
+                newProduct = cartProductTemplate(id=prod.id, name=product.name, photoPath=product.photoPath, quantity=prod.quantity, description=product.description, form=newform)
                 products.append(newProduct)
-                form = cartForm(initial={'quantity': prod.quantity})
-                forms.append(form)
                 total += product.price * prod.quantity
                 
     return render(request, "carrito.html", {'products': products, 'total': total, 'forms': forms})
 
 
 def productDetail(request, id):
+    user_id=request.user.id
     product = Products.objects.get(id=id)
+    if request.method=="POST":
+        form=cartForm(request.POST)
+        if form.is_valid():
+            product=form.save()
+            messages.add_message(request, messages.SUCCESS, 'Registro exitoso')
+            return HttpResponseRedirect(reverse_lazy('Carrito', args=[user_id]))
+    else:
+        form=cartForm()
+    return render(request, "detalleProducto.html",{"product":product, "form":form})
     
 def ProductsFormView(request):
     if request.method=="POST":
         form=ProductsForm(request.POST)
         if form.is_valid():
             product=form.save()
+
             messages.add_message(request, messages.SUCCESS, 'Registro exitoso')
-            return HttpResponseRedirect(reverse_lazy('CatalogueFormView', args=[provider.id]))
+            return HttpResponseRedirect(reverse_lazy('home', args=[]))
     else:
         form=ProductsForm()
     return render(request, "ProductsForm.html", {'form':form})
