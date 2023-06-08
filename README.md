@@ -1,6 +1,6 @@
 # LaDinoTienda
 Dinotienda desarollada por empresaurios
-| Url                                  | Función en Python       | Nombre del Template           |
+| Url                                  | Función en Python       | Nombre en figma           |
 |--------------------------------------|-------------------------|-------------------------------|
 | `/cerrar-sesion/`                    | `SignOutView`           | `cerrar sesion`               |
 | `/registro/`                         | `signIn`                | `Dino registro`               |

@@ -4,18 +4,20 @@
 
 <style>
   input[type="text"] {
+    width: 20rem;
     background-color: #8ca87c;
     border-radius: 50%;
     padding-top: 10px;
     text-align: center;
   }
   input[type="number"] {
+    width: 20rem;
     background-color: #8ca87c;
     border-radius: 50%;
     padding-top: 10px;
     text-align: center;
   }
-  .AgregarProducto {
+  .AgregarProductoNuevo {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -25,19 +27,10 @@
     height: 35rem;
     border-radius: 1rem;
   }
-  .AgregarProductoNuevo {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: center;
-    margin: 5rem;
-  }
   .ContenedorPrincipal {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction: row;
     text-align: center;
-    margin: 5rem;
   }
   .DinoImagen {
     width: 35rem;
@@ -51,44 +44,60 @@
     justify-content: space-between;
     margin: 6rem;
     padding: 6rem;
+    margin-top: -1.75rem;
   }
   .AddPhoto {
     display: flex;
     width: 15rem;
     height: 15rem;
   }
+  .row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    margin-top: 10px;
+  }
+  #id_photoPath {
+    width: 5rem;
+    height: 5rem;
+  }
+  #id_description {
+    margin-top: 2rem;
+    border-radius: 50%;
+    width: 43rem;
+    height: 8rem;
+  }
+  .super {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .DinoButton {
+    background-color: #ab8742;
+  }
 </style>
 
-<div class="ContenedorPrincipal">
-  <div>
-    <h1>Nuevo producto</h1>
-    <i class="fa-solid fa-rectangle-history-circle-plus"></i>
-  </div>
-  <div class="AgregarProductoNuevo">
-    <div class="AgregarProducto">
+<div class="container-fluid super">
+  <h1>Nuevo producto</h1>
+  <div class="ContenedorPrincipal">
+    <div class="Container-lg AgregarProductoNuevo">
       <form class="DinoForm" method="POST">
         {% csrf_token %}
-        <div>
-          <!-- <img src="/static/add.svg" onchange="{{ form.photoPath }}" /> -->
-          {{ form.photoPath }}
-        </div>
-        <div>{{ form.name }} {{ form.price }}</div>
-        <div>{{ form.brand }} {{ form.quantity }}</div>
-        <div>{{ form.description }}</div>
-        <button type="submit">Enviar</button>
+        <!-- <img src="/static/add.svg" onchange="{{ form.photoPath }}" /> -->
+        {{ form.photoPath }}
+        <div class="row">{{ form.name }} {{ form.price }}</div>
+        <div class="row">{{ form.brand }} {{ form.quantity }}</div>
+        <div class="description">{{ form.description }}</div>
+        <button class="btn btn-succes mt-3 DinoButton" type="submit">
+          Enviar
+        </button>
       </form>
     </div>
-    <div>
+    <div class="container">
       <img class="DinoImagen" src="/static/DinoProductoNuevo.jpg" />
     </div>
   </div>
 </div>
-
-<script>
-  photo = document.getElementById("id_photoPath");
-  icon = document.createElement("i");
-  icon.class = "fa-regular fa-rectangle-history-circle-plus";
-  photo.appendChild(icon);
-</script>
 
 {%endblock%}

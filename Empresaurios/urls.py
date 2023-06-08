@@ -15,22 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-from clients.views import ProvidersFormView,home
+from clients.views import ProvidersFormView,home, ConvenienceStoreFormView
 from Login.views import logIn, signIn, SignOutView, contacto, buyerFormView
 from products.views import productDetail,cart, searchProducts, ProductsFormView,ticket,cosultOrders
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('cerrar-sesion/', SignOutView.as_view(), name='cerrar sesion'), 
-    re_path("registro/", signIn, name='Dino registro'),
-    path('iniciar-sesion/', logIn.as_view(), name='Dino iniciar sesion'),
-    path('registro-comprador/', buyerFormView, name='DinoDino Registro Comprador'),
-    path("registro-vendedor/", ProvidersFormView,name="Dino Registro vendedor"),
-    path("busqueda-producto/",searchProducts,name="Dino busqueda"),
+    path('cerrar-sesion', SignOutView.as_view(), name='cerrar sesion'), 
+    re_path("registro", signIn, name='Dino registro'),
+    path('iniciar-sesion', logIn.as_view(), name='Dino iniciar sesion'),
+    path('registro-comprador', buyerFormView, name='DinoDino Registro Comprador'),
+    path("registro-vendedor", ProvidersFormView,name="Dino Registro vendedor"),
+    path("busqueda-producto/<product>",searchProducts,name="Dino busqueda"),
     path("detalle-producto/<id>", productDetail,name="Dino producto especifico"),
-    path("registro-producto/", ProductsFormView,name="Dino registro de producto"),
+    path("registro-producto", ProductsFormView,name="Dino registro de producto"),
     path("carrito/<userId>", cart,name="Dino carrito"),
     path("consultar-pedidos",cosultOrders, name="Dino consultar pedidos" ),
     path("ticket-de-compra",ticket,name ="Dino ticket compra"),
-    # path("conveniencestore/", ConvenienceStoreFormView, name="Registro de comprador"),
+    path("registro-comprador", ConvenienceStoreFormView, name="Registro de comprador"),
     path("",home,name='home' ),
 ]

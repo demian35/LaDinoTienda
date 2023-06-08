@@ -46,7 +46,7 @@
   </style>
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand" id="logo" href="#"><Img src="{%static 'empresaurios-removebg-preview 3.svg' %}" ></Img></a>
+      <a class="navbar-brand" id="logo" href="home.html"><Img src="{%static 'empresaurios-removebg-preview 3.svg' %}" ></Img></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -56,15 +56,14 @@
       </a>
       
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="form d-flex rounded-3">
-          <input class="form-control me-2" type="search" placeholder="Busca tus articulos" aria-label="Busca tus articulos">
+        <form class="form d-flex rounded-3" action="/busqueda-producto/0" method="GET" id="searchProduct">
+          <input class="form-control me-2" type="search" placeholder="Busca tus articulos" aria-label="Busca tus articulos" name="searchProduct" >
           <button class="btn btn-outline-success" type="submit">
             <i class="fa-solid fa-magnifying-glass" style="color:black; "></i>
           </button>
+          
         </form>
-        <a>
-          <i class="fa-sharp fa-light fa-cart-shopping-fast"></i>
-        </a>
+        
       </div>
         
           <a href="/carrito/{{user.id}}" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
