@@ -112,10 +112,11 @@ def cosultOrders(request):
         return render(request, "consultarPedidos.html",{"username":user})
     else:
         return redirect('identificate')
-def ticket (request):
+def ticket (request, userId):
     if request.user.is_authenticated:
         user=request.user.username
-        return render(request, "ticketCompra.html",{"username":user})
+        cart = Cart.objects.filter(id_convenience_store=userId, bought=False)
+        return render(request, "ticketCompra.html",{"username":user, "Objects": cart})
     else:
         return redirect('identificate')
     
