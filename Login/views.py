@@ -25,9 +25,9 @@ def signIn(request):
         form = LoginForm(request)
     return render(request, 'iniciar_sesion.html', {'form': form})
 class SignOutView(LogoutView):
-    def get_next_page(self):
-        # Especifica la URL de redirección, en este caso, la página de inicio (home)
-        return reverse_lazy('home')
+    
+        reverse_lazy('home')
+    
 
 class logIn(CreateView):
     model = Perfil

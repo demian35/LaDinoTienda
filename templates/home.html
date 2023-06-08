@@ -190,11 +190,7 @@
           </div>
         </div>
       </div>
-      {%if user.rol=="comprador"%}
-      <script>
-        profiles("comprador")
-      </script>
-      {%end if%} 
+      
   </div>
   <div class="container-fluid" id="vendedor">
     <h1 class="d-block text-center mt-5">Bienvenido username</h1>
@@ -215,14 +211,21 @@
             </div>
         </div>
     </div>
-    {%if user.rol=="vendedor"%}
-    <script>
-      profiles("vendedor")
-    </script>
-    {%end if%}
+    
     
   </div>
   <!-- Termina código a copiar en template -->
+  {%if profile%}
+    <script>
+      console.log("vendedor")
+      profiles("vendedor")
+    </script>
+    {% else %}
+    <script>
+      console.log("vendedor")
+      profiles("comprador")
+    </script>
+    {%endif%}
   </div>
   
   <script>
@@ -231,8 +234,15 @@
     comprador.display="none"
     vendedor.display="none"
     function profiles(profile) {
-      container=document.getElementById(profile)
-      container.display="flex"
+      console.log(profile)
+      if (profile=="vendedor") {
+        vendedor.display="flex"
+        comprador.display="none"
+      }
+      else{
+        comprador.display="flex"
+        vendedor.display="none"
+      }
     }
   </script>
       {% endblock body %}

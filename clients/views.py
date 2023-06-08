@@ -12,13 +12,13 @@ def home(request):
         provider=Providers.objects.filter(user_id=user_id)
         buyer=ConvenienceStore.objects.filter(user_id=user_id)
         if provider:
-            return render(request,"home.html", {"username":user})
+            return render(request,"home.html", {"username":user,"profile":True})
         elif buyer:
-            return render(request,"home.html",{"username":user})
+            return render(request,"home.html",{"username":user,"profile":False})
         else:
-            return render(request,"home.html",{"username":user})
+            return render(request,"home.html",{"username":user,"profile":True})
     else:
-        return redirect('identificate')
+        return redirect('Dino registro')
 def ProvidersFormView(request):
     if request.user.is_authenticated:
         user=request.user.username
@@ -47,3 +47,4 @@ def ConvenienceStoreFormView(request):
         return render(request, "ConvenienceStoreRegister.html",{'form': form,"title":"Registro de tienda de conveniencia","username":user })
     else:
         return redirect('identificate')
+    
