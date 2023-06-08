@@ -56,15 +56,14 @@
       </a>
       
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="form d-flex rounded-3">
-          <input class="form-control me-2" type="search" placeholder="Busca tus articulos" aria-label="Busca tus articulos">
+        <form class="form d-flex rounded-3" action="/busqueda-producto/0" method="GET" id="searchProduct">
+          <input class="form-control me-2" type="search" placeholder="Busca tus articulos" aria-label="Busca tus articulos" name="searchProduct" >
           <button class="btn btn-outline-success" type="submit">
             <i class="fa-solid fa-magnifying-glass" style="color:black; "></i>
           </button>
+          
         </form>
-        <a>
-          <i class="fa-sharp fa-light fa-cart-shopping-fast"></i>
-        </a>
+        
       </div>
         
           <a href="/carrito/{{user.id}}" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">

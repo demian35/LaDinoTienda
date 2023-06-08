@@ -6,13 +6,13 @@
 {%block title%}busqueda de articulo{%endblock%}
 {%block body%}
 
-<p>Se encontraron {{cantidad}} para {{tipo}} </p>
-    {% for producto in Products%}
+<p>Se encontraron {{len}} para {{query}} </p>
+    {% for producto in products%}
     <h4>{{producto.name}}</h4>
-    <a href="/busqueda/{{producto.id}}" ><img src="{%static {{producto.photoPath}}%}" alt=""></a>
+    <a href="/busqueda/{{producto.id}}" ><img src="/static/ProductImages/{{producto.photoPath}}" alt=""></a>
     <p>{{producto.description}}</p>
     <p>{{producto.price}}</p>
-    <a class="btn btn-success"  >
+    <a href="/add-cart/{{producto.id}}" class="btn btn-success"  >
       <i class="fa-solid fa-list-check"></i>
       agregar
     </a>

@@ -12,11 +12,11 @@ def home(request):
         provider=Providers.objects.filter(user_id=user_id)
         buyer=ConvenienceStore.objects.filter(user_id=user_id)
         if provider:
-            return render(request,"home.html", {"username":user,"profile":True})
+            return render(request,"home.html", {"username":user})
         elif buyer:
-            return render(request,"home.html",{"username":user,"profile":False})
+            return render(request,"home.html",{"username":user})
         else:
-            return render(request,"home.html",{"username":user,"profile":True})
+            return render(request,"home.html",{"username":user})
     else:
         return redirect('Dino registro')
 def ProvidersFormView(request):
@@ -27,10 +27,10 @@ def ProvidersFormView(request):
             if form.is_valid():
                 provider=form.save()
                 messages.add_message(request, messages.SUCCESS, 'Registro exitoso')
-                return HttpResponseRedirect(reverse_lazy('CatalogueFormView', args=[provider.id]))
+                return HttpResponseRedirect(reverse_lazy('home', args=[]))
         else:
             form=ProvidersForm()
-        return render(request, "CatalogeRegister.html", {'form':form,"username":user})
+        return render(request, "registroVendedor.html", {'form':form,"username":user})
     else:
         return redirect('identificate')
 def ConvenienceStoreFormView(request):

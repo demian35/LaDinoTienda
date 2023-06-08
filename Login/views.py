@@ -25,9 +25,7 @@ def signIn(request):
         form = LoginForm(request)
     return render(request, 'iniciar_sesion.html', {'form': form})
 class SignOutView(LogoutView):
-    
-        reverse_lazy('home')
-    
+    pass
 
 class logIn(CreateView):
     model = Perfil

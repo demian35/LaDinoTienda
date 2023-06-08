@@ -18,22 +18,30 @@ class cartProductTemplate:
     def decreseQuantity(self,newQuantity):
         self.quantinty-=newQuantity
 def searchProducts(request,product):   
-    if request.user.is_authenticated: 
+    if request.user.is_authenticated:
         user=request.user.username
         categorias=["producto de limpieza", "producto a granel","cuidado personal"]
         if product=="0":
             #esto es para cuando proviene del buscador
             product=request.GET["searchProduct"] 
-            products=Products.objects.filter(Name__contains=product)
-            return render(request,"products.html",{'products': products, 'query':product,"len":len(products),"username":user})
+
+            if product in categorias:
+                products=Products.objects.filter(description__contains=product)
+                return render(request,"busqueda.html",{'products': products, 'query':product,"len":len(products),"username":user})
+            else:
+                products=Products.objects.filter(name__contains=product)
+                return render(request,"busqueda.html",{'products': products, 'query':product,"len":len(products),"username":user})
         
         elif product in categorias:
-            products=Products.objects.filter(Description__contains=product)
-            return render(request,"products.html",{'products': products, 'query':product,"len":len(products),"username":user})
+            
+            products=Products.objects.filter(description__contains=product)
+            return render(request,"busqueda.html",{'products': products, 'query':product,"len":len(products),"username":user})
         else:
+            print("else")
             #esto es cuando viene desde el carrito
-            products=Products.objects.filter(id_products=product)
-            return render(request, "product.html", {'product':products,"username":user})
+            product=Products.objects.get(id=product)
+            products=[product,]
+            return render(request, "busqueda.html", {'products':products,"username":user,"len":1,"query":products[0].name})
     else:
         return redirect('identificate')
 
@@ -110,3 +118,6 @@ def ticket (request):
         return render(request, "ticketCompra.html",{"username":user})
     else:
         return redirect('identificate')
+    
+def addCart(request, producto):
+    pass

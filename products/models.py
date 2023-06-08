@@ -16,7 +16,7 @@ class Products(models.Model):
     class Meta:
         verbose_name_plural="Catálogo"
     def __str__(self) -> str:
-        return "El proveedor es: %s, %s"%( self.provider,self.Name)
+        return "El proveedor es: %s, %s"%( self.provider,self.name)
 class Cart(models.Model): 
     bought=models.BooleanField(default=False,verbose_name="Comprado")
     quantity=models.IntegerField(default=1, verbose_name="Cantidad")
