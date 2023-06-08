@@ -6,9 +6,10 @@ from .models import Perfil
 from .forms import SignUpForm
 from django.contrib.auth.views import LogoutView
 from .forms import LoginForm
+from django.urls import reverse_lazy
 
 
-def identificate(request):
+def signIn(request):
     if request.method == 'POST':
         form = LoginForm(request, data=request.POST)
         if form.is_valid():
@@ -24,8 +25,11 @@ def identificate(request):
         form = LoginForm(request)
     return render(request, 'iniciar_sesion.html', {'form': form})
 class SignOutView(LogoutView):
-    pass
-class registro(CreateView):
+    def get_next_page(self):
+        # Especifica la URL de redirección, en este caso, la página de inicio (home)
+        return reverse_lazy('home')
+
+class logIn(CreateView):
     model = Perfil
     form_class = SignUpForm
 
@@ -47,10 +51,10 @@ class registro(CreateView):
 def contacto (request):
     return render(request,"contacto.html",{})
 
-def registroComprador(request):
+def buyerFormView(request):
     username = request.user.username
     return render(request, "registroComprador.html", {'username': username})
 
-def registroVendedor(request):
+def providerFormView(request):
     username = request.user.username
     return render(request, "registroVendedor.html", {'username': username})

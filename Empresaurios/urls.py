@@ -15,29 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-from clients.views import ProvidersFormView, ConvenienceStoreFormView,home
-<<<<<<< HEAD
-from Login.views import registro, identificate, SignOutView, contacto, registroComprador
-from products.views import productDetail,cart, searchProducts,ProductsFormView
-=======
-from Login.views import registro, identificate, SignOutView, contacto, registroComprador, registroVendedor
-from products.views import productDetail,cart, searchProducts, ProductsFormView
->>>>>>> 19dfec78e05ba1257d62066721688aecdf72e7be
+from clients.views import providerFormView, ConvenienceStoreFormView,home,cosultOrders
+from Login.views import logIn, signIn, SignOutView, contacto, buyerFormView, registroVendedor
+from products.views import productDetail,cart, searchProducts, ProductsFormView,ticket
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('registro/', registro.as_view(), name='registro'),
-    path('signout/', SignOutView.as_view(), name='signout'), 
-    re_path("identificate/", identificate, name='identificate'),
-    path("registro-producto/", ProductsFormView,name="nuevo producto"),
-    path("providers/", ProvidersFormView,name="Registro de vendedor"),
-    path("carrito/<userId>", cart,name="Carrito"),
-    path("detalle-producto/<id>", productDetail,name="Detalle producto"),
-<<<<<<< HEAD
-=======
-    path("nuevo-producto", ProductsFormView,name="Nuevo producto"),
->>>>>>> 19dfec78e05ba1257d62066721688aecdf72e7be
-    path("conveniencestore/", ConvenienceStoreFormView, name="Registro de comprador"),
+    path('cerrar-sesion/', SignOutView.as_view(), name='cerrar sesion'), 
+    re_path("registro/", signIn, name='Dino registro'),
+    path('iniciar-sesion/', logIn.as_view(), name='Dino iniciar sesion'),
+    path('registro-comprador/', buyerFormView, name='DinoDino Registro Comprador'),
+    path("registro-vendedor/", providerFormView,name="Dino Registro vendedor"),
+    path("busqueda-producto/",searchProducts,name="Dino busqueda"),
+    path("detalle-producto/<id>", productDetail,name="Dino producto especifico"),
+    path("registro-producto/", ProductsFormView,name="Dino registro de producto"),
+    path("carrito/<userId>", cart,name="Dino carrito"),
+    path("consultar-pedidos",cosultOrders, Name="Dino consultar pedidos" ),
+    path("ticket-de-compra",ticket,name ="Dino ticket compra"),
+    # path("conveniencestore/", ConvenienceStoreFormView, name="Registro de comprador"),
     path("",home,name='home' ),
-    path('registroComprador/', registroComprador, name='Registro Comprador'),
-    path('registroVendedor/', registroVendedor, name='Registro Vendedor'),
 ]
