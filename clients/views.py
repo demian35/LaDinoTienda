@@ -12,31 +12,39 @@ def home(request):
         provider=Providers.objects.filter(user_id=user_id)
         buyer=ConvenienceStore.objects.filter(user_id=user_id)
         if provider:
-            return render(request,"home.html", {"username":user})
+            return render(request,"home.html", {"username":user,"profile":True})
         elif buyer:
-            return render(request,"home.html",{"username":user})
+            return render(request,"home.html",{"username":user,"profile":False})
         else:
-            return render(request,"home.html",{"username":user})
+            return render(request,"home.html",{"username":user,"profile":True})
+    else:
+        return redirect('Dino registro')
+def ProvidersFormView(request):
+    if request.user.is_authenticated:
+        user=request.user.username
+        if request.method=="POST":
+            form=ProvidersForm(request.POST)
+            if form.is_valid():
+                provider=form.save()
+                messages.add_message(request, messages.SUCCESS, 'Registro exitoso')
+                return HttpResponseRedirect(reverse_lazy('CatalogueFormView', args=[provider.id]))
+        else:
+            form=ProvidersForm()
+        return render(request, "CatalogeRegister.html", {'form':form,"username":user})
     else:
         return redirect('identificate')
-def ProvidersFormView(request):
-    if request.method=="POST":
-        form=ProvidersForm(request.POST)
-        if form.is_valid():
-            provider=form.save()
-            messages.add_message(request, messages.SUCCESS, 'Registro exitoso')
-            return HttpResponseRedirect(reverse_lazy('CatalogueFormView', args=[provider.id]))
-    else:
-        form=ProvidersForm()
-    return render(request, "CatalogeRegister.html", {'form':form})
 def ConvenienceStoreFormView(request):
-    if request.method=="POST":
-        form=ConvenienceStoreForm(request.POST)
-        if form.is_valid():
-            form.save()        
-            messages.add_message(request, messages.SUCCESS, 'Registro exitoso')
-            return HttpResponseRedirect(reverse_lazy('ConvenienceStoreHome', args=[]))
+    if request.user.is_authenticated:
+        user=request.user.username
+        if request.method=="POST":
+            form=ConvenienceStoreForm(request.POST)
+            if form.is_valid():
+                form.save()        
+                messages.add_message(request, messages.SUCCESS, 'Registro exitoso')
+                return HttpResponseRedirect(reverse_lazy('ConvenienceStoreHome', args=[]))
+        else:
+            form=ConvenienceStoreForm()
+        return render(request, "ConvenienceStoreRegister.html",{'form': form,"title":"Registro de tienda de conveniencia","username":user })
     else:
-        form=ConvenienceStoreForm()
-    return render(request, "ConvenienceStoreRegister.html",{'form': form,"title":"Registro de tienda de conveniencia" })
-
+        return redirect('identificate')
+    

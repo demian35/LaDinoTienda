@@ -5,7 +5,7 @@ from django.dispatch import receiver
 
 class Perfil(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-    rol=models.CharField(User, default="cliente" ,max_length=15)
+    rol=models.CharField(User, default="comprador" ,max_length=15)
     def __str__(self): 
         return self.usuario.username
         
