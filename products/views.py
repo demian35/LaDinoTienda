@@ -83,7 +83,11 @@ def productDetail(request, id):
         if request.method=="POST":
             form=cartForm(request.POST)
             if form.is_valid():
-                product=form.save()
+                product=form.save(False)
+                product.bought=False
+                product.id_convenience_store=user_id
+                product.id_producto=id
+                form.save()
                 messages.add_message(request, messages.SUCCESS, 'Registro exitoso')
                 return HttpResponseRedirect(reverse_lazy('Carrito', args=[user_id]))
         else:
@@ -119,5 +123,3 @@ def ticket (request):
     else:
         return redirect('identificate')
     
-def addCart(request, producto):
-    pass

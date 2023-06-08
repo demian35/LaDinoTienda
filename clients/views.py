@@ -12,11 +12,11 @@ def home(request):
         provider=Providers.objects.filter(user_id=user_id)
         buyer=ConvenienceStore.objects.filter(user_id=user_id)
         if provider:
-            return render(request,"home.html", {"username":user})
+            return render(request,"homeVendedor.html", {"username":user})
         elif buyer:
-            return render(request,"home.html",{"username":user})
+            return render(request,"homeComprador.html",{"username":user})
         else:
-            return render(request,"home.html",{"username":user})
+            return render(request,"homeComprador.html",{"username":user})
     else:
         return redirect('Dino registro')
 def ProvidersFormView(request):
