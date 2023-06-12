@@ -48,7 +48,7 @@
     <table class="tablaTicket">
     {% for producto in Products%}
     <tr>
-    <td><img src="static/ProductImages{{producto.photoPath.url}}" ></td>
+    <td><img src="/static/ProductImages{{producto.photoPath.url}}" ></td>
     <td>{{producto.description}}</td>
     <td>{{producto.quantity}}</td>
     <td>{{producto.price}}</td>

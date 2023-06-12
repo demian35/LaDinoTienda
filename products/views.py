@@ -42,7 +42,7 @@ def searchProducts(request,product):
             products=[product,]
             return render(request, "busqueda.html", {'products':products,"username":user,"len":1,"query":products[0].name})
     else:
-        return redirect('Dino registro')
+        return redirect('Dino iniciar sesion')
 
 
 
@@ -69,9 +69,9 @@ def cart(request, userId):
                     products.append(newProduct)
                     total += product.price * prod.quantity
                     
-        return render(request, "carrito.html", {'products': products, 'total': total, 'forms': forms,"username":user})
+        return render(request, "carrito.html", {'products': products, 'total': total, 'forms': forms,"username":user,"userId":userId})
     else:
-        return redirect('Dino registro')
+        return redirect('Dino iniciar sesion')
 
 
 def productDetail(request, id):
@@ -94,7 +94,7 @@ def productDetail(request, id):
             form=cartForm()
         return render(request, "detalleProducto.html",{"product":product, "form":form,"username":user})    
     else:
-        return redirect('Dino registro')
+        return redirect('Dino iniciar sesion')
 def ProductsFormView(request):
     if request.user.is_authenticated:  
         user=request.user.username  
@@ -109,7 +109,7 @@ def ProductsFormView(request):
             form=ProductsForm()
         return render(request, "ProductsForm.html", {'form':form, "username":user})
     else:
-        return redirect('Dino registro')
+        return redirect('Dino iniciar sesion')
 def cosultOrders(request):
     if request.user.is_authenticated:
         user=request.user.username
@@ -120,7 +120,7 @@ def ticket (request, userId):
     if request.user.is_authenticated:
         user=request.user.username
         cart = Cart.objects.filter(id_convenience_store=userId, bought=False)
-        return render(request, "ticketCompra.html",{"username":user,"userid":userId, "Objects": cart})
+        return render(request, "ticketCompra.html",{"username":user,"userid":userId, "Products": cart})
     else:
-        return redirect('Dino registro')
+        return redirect('Dino iniciar sesion')
     
