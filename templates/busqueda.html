@@ -6,16 +6,69 @@
 {%block title%}busqueda de articulo{%endblock%}
 {%block body%}
 
+
+<style>
+  img{
+    display: flex;
+    flex-direction: row;
+    width: 100px;
+    height: 110px;
+  }
+
+  .productobusqueda{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start
+  }
+
+
+</style>
+<div class="tituloticketcompra">
 <p>Se encontraron {{len}} para {{query}} </p>
+</div>
     {% for producto in products%}
-    <h4>{{producto.name}}</h4>
-    <a href="/busqueda-producto/{{producto.id}}" ><img src="/static/ProductImages/{{producto.photoPath}}" alt=""></a>
-    <p>{{producto.description}}</p>
-    <p>{{producto.price}}</p>
-    <a href="/detalle-producto/{{producto.id}}" class="btn btn-success"  >
-      <i class="fa-solid fa-list-check"></i>
-      agregar
-    </a>
+    <div class="productobusqueda">
+    <table class="tablitabusqueda">
+      <tr>
+           <td> 
+            
+            <div class="nombreproducto">
+            <h4>{{producto.name}}</h4>
+            </div>
+          
+            
+            <div class="imagenproducto">
+            <a href="/busqueda-producto/{{producto.id}}" ><img src="/static/ProductImages/{{producto.photoPath}}" alt=""></a>
+            </div>
+           
+
+            
+            <div class="descriptionproducto">
+            <p>{{producto.description}}</p>
+            </div>
+            
+
+            
+            <div class="precio">
+            <p>{{producto.price}}</p>
+            </div>
+           
+
+            
+            <div class="botonagregarcarrito">
+            <a href="/detalle-producto/{{producto.id}}" class="btn btn-success"  >
+            <i class="fa-solid fa-list-check"></i>
+            agregar
+            </a>
+
+            </div>
+          
+          </td>
+      </tr>
+
+    </table>
+    </div>     
+
 
     {%endfor%}
 
