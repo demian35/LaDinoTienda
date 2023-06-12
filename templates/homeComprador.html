@@ -171,19 +171,19 @@
           <div class="container mt-5">
             <div class="row">
               <div class="col-sm">
-                <a href="#" class="d-block text-center"  style="text-decoration: none;">
+                <a href="/busqueda-producto/producto de limpieza" class="d-block text-center"  style="text-decoration: none;">
                   <img src="{%static 'imageninferior1.jpeg'%}" class="w-100 rounded-3 img-thumbnail" style="max-height: 160px;" />
                   <h3 class="text-dark">Productos de limpieza</h3>
                 </a>
               </div>
               <div class="col-sm">
-                <a href="#" class="d-block text-center"  style="text-decoration: none;">
+                <a href="/busqueda-producto/producto a granel" class="d-block text-center"  style="text-decoration: none;">
                   <img src="{%static 'imageninferior2.jpeg'%}" class="w-100 rounded-3 img-thumbnail"  style="max-height: 160px;" />
                 <h3 class="text-dark">Productos a granel</h3>
               </a>
             </div>
           <div class="col-sm">
-            <a href="#" class="d-block text-center"  style="text-decoration: none;">
+            <a href="/busqueda-producto/cuidado personal" class="d-block text-center"  style="text-decoration: none;">
               <img src="{%static 'imageninferior3.jpeg'%}" class="w-100 rounded-3 img-thumbnail"  style="max-height: 160px;" />
               <h3 class="text-dark">Cuidado personal</h3>
             </a>
@@ -192,56 +192,8 @@
       </div>
       
   </div>
-  <div class="container-fluid" id="vendedor">
-    <h1 class="d-block text-center mt-5">Bienvenido username</h1>
-  <div class="container mt-3">
-    <div class="row">
-        <div class="col-sm">
-            <div class="p-5">
-                <a href="ProductsForm.html" class="text-center d-block p-5 rounded-3" style="text-decoration:none; background-image: url('images/piedrascafes.jpeg'); background-size: cover;">
-                    <h2 class="text-white display-3">Registrar producto</h2>
-                </a>
-            </div>
-        </div>
-        <div class="col-sm">
-            <div class="p-5">
-                <a href="consultarPedidos.html" class="text-center d-block p-5 rounded-3" style="text-decoration:none; background-image: url('images/piedras.jpg'); background-size: cover;">
-                    <h2 class="text-white display-3">Consultar pedidos</h2>
-                </a>
-            </div>
-        </div>
-    </div>
+  
     
-    
-  </div>
-  <!-- Termina código a copiar en template -->
-  {%if profile%}
-    <script>
-      console.log("vendedor")
-      profiles("vendedor")
-    </script>
-    {% else %}
-    <script>
-      console.log("vendedor")
-      profiles("comprador")
-    </script>
-    {%endif%}
   </div>
   
-  <script>
-    comprador=document.getElementById("comprador")
-    vendedor=document.getElementById("vendedor")
-    comprador.display="none"
-    vendedor.display="none"
-    function profiles(profile) {
-      if (profile=="vendedor") {
-        vendedor.display="flex"
-        comprador.display="none"
-      }
-      else{
-        comprador.display="flex"
-        vendedor.display="none"
-      }
-    }
-  </script>
       {% endblock body %}

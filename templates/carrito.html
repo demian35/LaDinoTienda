@@ -75,6 +75,10 @@
         flex-direction: row;
 
       }
+      a{
+        text-decoration: none;
+        color: black;
+      }
     </style>
     <div class="titulocarrito">
     <h1>Mi carrito </h1>
@@ -86,8 +90,8 @@
       <table class="tablacarrito">
         {% for producto in products%}
           <tr>       
-            <td><img src="/static/ProductImages{{producto.photoPath.url }}"></td>  
-            <td>{{producto.description}}</td>        
+            <td><a href="/busqueda-producto/{{producto.id}}"><img src="/static/ProductImages{{producto.photoPath.url }}"> </a></td>  
+            <td><a href="/busqueda-producto/{{producto.id}}">{{producto.description}}</a></td>        
             <td>{{producto.form.quantity}}</td>
           </tr>
         {%endfor%}
