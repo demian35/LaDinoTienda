@@ -18,7 +18,7 @@ def home(request):
         else:
             return render(request,"homeComprador.html",{"username":user})
     else:
-        return redirect('Dino registro')
+        return redirect('Dino iniciar sesion')
 def ProvidersFormView(request):
     if request.user.is_authenticated:
         user=request.user.username
@@ -32,7 +32,7 @@ def ProvidersFormView(request):
             form=ProvidersForm()
         return render(request, "registroVendedor.html", {'form':form,"username":user})
     else:
-        return redirect('Dino registro')
+        return redirect('Dino iniciar sesion')
 def ConvenienceStoreFormView(request):
     if request.user.is_authenticated:
         user=request.user.username
@@ -41,10 +41,10 @@ def ConvenienceStoreFormView(request):
             if form.is_valid():
                 form.save()        
                 messages.add_message(request, messages.SUCCESS, 'Registro exitoso')
-                return HttpResponseRedirect(reverse_lazy('ConvenienceStoreHome', args=[]))
+                return HttpResponseRedirect(reverse_lazy('home', args=[]))
         else:
             form=ConvenienceStoreForm()
         return render(request, "ConvenienceStoreRegister.html",{'form': form,"title":"Registro de tienda de conveniencia","username":user })
     else:
-        return redirect('Dino registro')
+        return redirect('Dino iniciar sesion')
     

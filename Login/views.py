@@ -37,7 +37,7 @@ class logIn(CreateView):
         password = form.cleaned_data.get('password1')
         usuario = authenticate(username=usuario,password=password)
         login(self.request, usuario)
-        return redirect('home')
+        return redirect('Dino registro de comprador')
     def userRol(request):
         if request.method=='POST':
             if 'vendedor' in request.POST:
@@ -48,10 +48,6 @@ class logIn(CreateView):
 
 def contacto (request):
     return render(request,"contacto.html",{})
-
-def buyerFormView(request):
-    username = request.user.username
-    return render(request, "registroComprador.html", {'username': username})
 
 def providerFormView(request):
     username = request.user.username

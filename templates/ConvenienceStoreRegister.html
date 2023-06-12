@@ -1,40 +1,52 @@
 {%extends "base.html"%}
-
-{%block title%}
-  {{title}}
-{%endblock%}
+{%load static%}
 {%block body%}
 
 
 <style>
-  .container{
-    background-image: url("{%static 'image__2_-removebg-preview 1.svg'% }  ");
-  }
-  form{
+  #principal{
     display: flex;
+    flex-direction: row;
     align-items: center;
-    background-color: #d9c9d9;
-    border-radius: 50%;
-    padding: 20px;
+    justify-content: center;
+  }
+  div.register{
+    float: right;
+  }
+
+  form .register{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    justify-content: center;
   }
   input[type="text"]{
     background-color: #8ca87c;
     border-radius: 50%;
-    padding-top: 10px;
+    margin-top: 20px;
     text-align: center;
+    width: 50%;
   }
 </style>
+<div class="container-fluid" id="principal" >
 
-<div class="container">
-
+    <div class="container register">
+      <form class="register" method="POST">
+        {% csrf_token %}
+        {{form.name}}
+        {{form.last_name}}
+        {{form.telephone}}
+        {{form.descripcion}}
+        <button class="btn btn-success" style="float: right;" type="submit">Enviar</button>
+      </form>
+      
+    </div>
+      <img src="{% static 'dinocompra.png'%}" alt="">
   
-  <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Enviar</button>
-  </form>
-</div>
+  </div>
   
-
-
-{%endblock%}
+  
+  
+  {%endblock%}
