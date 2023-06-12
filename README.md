@@ -1,4 +1,4 @@
-# LaDinoTienda
+# LaDinoTienda 🦖
 Dinotienda desarollada por empresaurios
 | Url                                  | Función en Python       | Nombre en figma           |
 |--------------------------------------|-------------------------|-------------------------------|
