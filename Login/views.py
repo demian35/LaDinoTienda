@@ -56,3 +56,7 @@ def buyerFormView(request):
 def providerFormView(request):
     username = request.user.username
     return render(request, "registroVendedor.html", {'username': username})
+
+def suscripcionView(request):
+    username = request.user.username
+    return render(request, "suscripcion.html", {'username': username})

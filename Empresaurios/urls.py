@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from clients.views import ProvidersFormView,home, ConvenienceStoreFormView
-from Login.views import logIn, signIn, SignOutView, contacto, buyerFormView
+from Login.views import logIn, signIn, SignOutView, contacto, buyerFormView, suscripcionView
 from products.views import productDetail,cart, searchProducts, ProductsFormView,ticket,cosultOrders
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -30,7 +30,8 @@ urlpatterns = [
     path("registro-producto", ProductsFormView,name="Dino registro de producto"),
     path("carrito/<userId>", cart,name="Dino carrito"),
     path("consultar-pedidos",cosultOrders, name="Dino consultar pedidos" ),
-    path("ticket-de-compra",ticket,name ="Dino ticket compra"),
+    path("carrito/ticket-de-compra/<userId>",ticket,name ="Dino ticket compra"),
     path("registro-comprador", ConvenienceStoreFormView, name="Registro de comprador"),
+    path("suscripcion/", suscripcionView, name="Suscripcion"),
     path("",home,name='home' ),
 ]

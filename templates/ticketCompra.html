@@ -6,25 +6,76 @@
 {%block title%}Orden aceptada{%endblock%}
 {%block body%}
 
+    <style>
+      h1{
+        text-align: center;
+      }
+
+      #ticketarticulos{
+        border-top: solid black 2px;
+        border-bottom: solid black 2px;
+        width: 72%;
+        height: 55vh;
+        overflow: auto;
+        float: left;
+        margin-left: 40px;
+        overflow-x: hidden;
+      }
+
+      #cuenta{
+        
+        border-bottom: solid black 2px;
+        width: 20%;
+        height: 55vh;
+        overflow: auto;
+        float: right;
+        margin-right: 10px;
+        overflow-x: hidden;
+      }
+
+      .footerticket{
+        margin-bottom: 50%;
+      }
+
+
+    </style>
+
     <div class="ordenaceptada">
     <h1>Tu orden ha sido aceptada</h1>
     </div>
-    <div class="container" id="">
+
+    <div class="container-md" id="ticketarticulos">
+    <table class="tablaTicket">
     {% for producto in Products%}
-    <img src="{{producto.photoPath}}" id="articulos">
-    <a href="/busqueda/{{producto.id}}" ><img src="{%static {{producto.photoPath}}%}" alt=""></a>
-    <p>{{producto.description}}</p>
-    <p>{{producto.quantity}}</p>
-    <p>{{producto.price}}</p>
+    <tr>
+    <td><img src="static/ProductImages{{producto.photoPath.url}}" ></td>
+    <td>{{producto.description}}</td>
+    <td>{{producto.quantity}}</td>
+    <td>{{producto.price}}</td>
+    </tr>
     {%endfor%}
+    </table>
     </div>
 
-    <div class="container" id="cuenta">
-    <p>Subtotal {{subtotal}}</p>
-    <p>Total {{total}}</p>
+    <div class="container-md" id="cuenta">
+    <table>
+      <tr>
+      <th>Producto</th>
+      </tr>
+      {% for producto in Products%}
+      <tr>
+        <td>{{producto.description}}</td>
+        <td>{{producto.price}}</td>
+      </tr>
+      <tr>
+        <td>Subtotal</td>
+        <td>{{total}}</td>
+      </tr>
+      {%endfor%}
+    </table>
     </div>
  
-  <a href="">Imprimir ticket de compra</a>
+  <a class="footerticket" href="">Imprimir ticket de compra</a>
   
 
 {% endblock body %}

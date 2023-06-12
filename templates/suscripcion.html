@@ -1,0 +1,79 @@
+
+{% load static %}
+
+        <style>
+        
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 25px;
+            }
+
+            .fondo{
+                background-color: #D9C9B9;
+            }
+
+            .tamañoDiv{
+                height: 400px;
+                width: 900px;                
+            }
+
+            .borde{
+                border-radius: 20px;
+            }
+
+            .centrarTexto{
+                text-align: center;
+            }
+
+            .centrarImg{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .botones-container {
+                display: flex;
+                justify-content: space-between;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .btn-aceptar {
+                background-color: #8CA87C;
+                color: white;
+            }
+            
+            .btn-rechazar {
+                background-color: #8CA87C;
+                color: white;
+            }
+
+            .tamañoBoton{
+                height: 50px;
+                width: 200px;
+            }
+
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+        <h1 class="d-block text-center mt-5">¡Bienvenido al Escorpion!</h1>
+
+        <div class="container" style="margin-bottom: 50px;">
+            <div class="fondo tamañoDiv borde">
+                <h4 class="centrarTexto" style="margin-top: 25px;">¡¡¡CONVIERTETE EN DINOSOCIO!!!</h4>
+
+                <div class="centrarImg">
+                    <img  style="width: 175px; height: 250px; margin-top: 25px;" src="{% static 'dinotraje.png'%}" alt="Dino Traje">
+                </div>
+
+                <div class="botones-container">
+                    <input href="/home"  class="btn-aceptar tamañoBoton" style="margin-left: 60px;" type="button" value="Ver más" >
+                    <input href="/home"  class="btn-rechazar tamañoBoton" style="margin-right: 60px;" type="button" value="Quizá mas tarde" >
+                </div>
+            </div>
+        </div>
