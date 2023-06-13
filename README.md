@@ -1,5 +1,5 @@
-# LaDinoTienda
-Dinotienda desarollada por empresaurios
+# LaDinoTienda 🛒 🦖
+Dinotienda desarollada por empresaurios 🦕
 | Url                                  | Función en Python       | Nombre en figma           |
 |--------------------------------------|-------------------------|-------------------------------|
 | `/cerrar-sesion/`                    | `SignOutView`           | `cerrar sesion`               |
