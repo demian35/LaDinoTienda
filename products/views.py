@@ -7,14 +7,13 @@ from .models import Products, Cart
 from .forms import cartForm, ProductsForm
 from django.db import transaction
 class cartProductTemplate:
-    def __init__(self,id,name,photoPath,quantity,description,form,price):
+    def __init__(self,id,name,photoPath,quantity,description,form):
         self.id=id
         self.name=name
         self.photoPath=photoPath
         self.quantinty=quantity
         self.description=description
         self.form=form
-        self.price=price
     def increseQuantity(self, newQuantity):
         self.quantity+=newQuantity
     def decreseQuantity(self,newQuantity):
