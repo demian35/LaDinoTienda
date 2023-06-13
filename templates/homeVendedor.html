@@ -14,10 +14,9 @@
     }
 </style>
 
-<!-- Comienza código a copiar en template -->
-
-<h1 class="d-block text-center mt-5">Bienvenido {{username}}</h1>
-<div id="principal" class="container mt-3">
+ <!-- Comienza código a copiar en template -->
+  <h1 class="d-block text-center mt-5">Bienvenido {{username}}</h1>
+  <div class="container mt-3">
     <div class="row">
         <div class="col-sm">
             <div class="p-5">
@@ -28,18 +27,74 @@
         </div>
         <div class="col-sm">
             <div class="p-5">
-                <a href="#" class="text-center d-block p-5 rounded-3" style="text-decoration:none; background-image: url({% static 'piedras.jpg' %}); background-size: cover;">
+                <!-- Agrega el enlace para abrir el modal -->
+                <a href="#" onclick="openModal()" class="text-center d-block p-5 rounded-3" style="text-decoration:none; background-image: url({% static 'piedras.jpg' %}); background-size: cover;">
                     <h2 class="text-white display-3">Consultar pedidos</h2>
                 </a>
             </div>
         </div>
     </div>
-    {%if suscribe%}
-    {%include "suscripcion.html"%}
-    {%endif%}
+  </div>
+  <!-- Termina código a copiar en template -->
+
+  <!-- Modal y código JavaScript -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Consulta de Pedidos</h2>
+      <table>
+        <tr>
+          <th>#</th>
+          <th>Nombre de la tienda</th>
+          <th>Cantidad a pagar</th>
+          <th>Eliminar</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>La Tiendita</td>
+          <td>$10,000.00</td>
+          <td><button onclick="eliminarPedido(1)">Eliminar</button></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>La Bodeguita de Juan</td>
+          <td>$15,000.00</td>
+          <td><button onclick="eliminarPedido(2)">Eliminar</button></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>El Mercadito de Petra</td>
+          <td>$20,000.00</td>
+          <td><button onclick="eliminarPedido(3)">Eliminar</button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // Función para abrir el modal
+    function openModal() {
+      document.getElementById("myModal").style.display = "block";
+    }
+
+    // Función para cerrar el modal
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
+
+    // Función para eliminar un pedido (solo para simulación)
+    function eliminarPedido(numeroPedido) {
+      alert("Eliminando pedido #" + numeroPedido);
+    }
+  </script>
+</body>
+</html>
+
+</div>
+{%if suscribe%}
+{%include "suscripcion.html"%}
+{%endif%}
 </div>
 
-
-<!-- Termina código a copiar en template -->
-
 {% endblock body %}
+
