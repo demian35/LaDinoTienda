@@ -20,7 +20,7 @@ from Login.views import logIn, signIn, SignOutView, contacto, suscripcionView
 from products.views import productDetail,cart, searchProducts, ProductsFormView,ticket,cosultOrders
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('cerrar-sesion', SignOutView.as_view(), name='cerrar sesion'), 
+    path('cerrar-sesion', SignOutView.as_view(next_page='home'), name='cerrar sesion'), 
     re_path("iniciar-sesion", signIn, name='Dino iniciar sesion'),
     path('registro/', logIn.as_view(), name='Dino registro'),
     path("registro-vendedor", ProvidersFormView,name="Dino Registro vendedor"),
