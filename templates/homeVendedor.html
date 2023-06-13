@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-sm">
             <div class="p-5">
-                <a href="#" class="text-center d-block p-5 rounded-3" style="text-decoration:none; background-image: url({% static 'piedrascafes.jpeg' %}); background-size: cover;">
+                <a href="/registro-producto" class="text-center d-block p-5 rounded-3" style="text-decoration:none; background-image: url({% static 'piedrascafes.jpeg' %}); background-size: cover;">
                     <h2 class="text-white display-3">Registrar producto</h2>
                 </a>
             </div>
@@ -42,31 +42,30 @@
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
       <h2>Consulta de Pedidos</h2>
+      
       <table>
         <tr>
           <th>#</th>
           <th>Nombre de la tienda</th>
           <th>Cantidad a pagar</th>
-          <th>Eliminar</th>
+          <th>Telefono</th>
         </tr>
-        <tr>
-          <td>1</td>
-          <td>La Tiendita</td>
-          <td>$10,000.00</td>
-          <td><button onclick="eliminarPedido(1)">Eliminar</button></td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>La Bodeguita de Juan</td>
-          <td>$15,000.00</td>
-          <td><button onclick="eliminarPedido(2)">Eliminar</button></td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>El Mercadito de Petra</td>
-          <td>$20,000.00</td>
-          <td><button onclick="eliminarPedido(3)">Eliminar</button></td>
-        </tr>
+        {%for client in clients%}
+          <td>
+            1
+          </td>
+          <td>
+            {{client.name}}
+          </td>
+        <td>
+          {% for bill in bills%}
+            {{bill}}
+          {% endfor %}
+        </td>
+        <td>
+          {{client.telephone}}
+        </td>
+        {%endfor%}
       </table>
     </div>
   </div>

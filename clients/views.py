@@ -4,7 +4,7 @@ from .forms import ConvenienceStoreForm , ProvidersForm
 from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import Providers, ConvenienceStore
-from products.models import Cart
+from products.models import Cart, Products
 
 def home(request):
     if request.user.is_authenticated:
@@ -13,13 +13,27 @@ def home(request):
         provider=Providers.objects.filter(user_id=user_id)
         buyer=ConvenienceStore.objects.filter(user_id=user_id)
         if provider:
-            try:
-                orders=Cart.objects.filter(bought=True)
-                lenOrders=len(orders)
-                client=ConvenienceStore.objects.get(id=Cart.id_convenience_store)
-                return render(request,"homeVendedor.html", {"username":user,"profile":True, "suscribe": provider[0].is_suscribed,"len":lenOrders,"orders":orders,"client":client})
-            except:
-                return render(request,"homeVendedor.html", {"username":user,"profile":True, "suscribe": provider[0].is_suscribed})
+            # try:
+                orders = Cart.objects.filter(bought=True)
+                clients = []
+                bills = []
+                for order in orders:
+                    client = ConvenienceStore.objects.get(id=order.id_convenience_store_id)
+                    product = Products.objects.get(id=order.id_producto_id)
+                    
+                    if client in clients:
+                        i = clients.index(client)
+                        bills[i] += (order.quantity * product.price)
+                    else:
+                        clients.append(client)
+                        bills.append(order.quantity * product.price)
+                if len(clients)==0:
+                    return render(request,"homeVendedor.html", {"username":user,"profile":True, "suscribe": provider[0].is_suscribed})
+                if len(clients)==1:
+                    print(clients)
+                    return render(request,"homeVendedor.html", {"username":user,"profile":True, "suscribe": provider[0].is_suscribed,"bills": bills, "clients": clients})
+                else:
+                    return render(request, "homeVendedor.html", {"username": user, "profile": True, "suscribe": provider[0].is_suscribed,"bills": bills, "clients": clients})
 
         elif buyer:
     
