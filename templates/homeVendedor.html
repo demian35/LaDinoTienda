@@ -14,32 +14,36 @@
     }
 </style>
 
-<!-- Comienza código a copiar en template -->
-
-<h1 class="d-block text-center mt-5">Bienvenido {{username}}</h1>
-<div id="principal" class="container mt-3">
+ <!-- Comienza código a copiar en template -->
+  <h1 class="d-block text-center mt-5">Bienvenido {{username}}</h1>
+  <div class="container mt-3">
     <div class="row">
         <div class="col-sm">
             <div class="p-5">
-                <a href="#" class="text-center d-block p-5 rounded-3" style="text-decoration:none; background-image: url({% static 'piedrascafes.jpeg' %}); background-size: cover;">
-                    <h2 class="text-white display-3">Registrar producto</h2>
-                </a>
-            </div>
-        </div>
-        <div class="col-sm">
-            <div class="p-5">
-                <a href="#" class="text-center d-block p-5 rounded-3" style="text-decoration:none; background-image: url({% static 'piedras.jpg' %}); background-size: cover;">
-                    <h2 class="text-white display-3">Consultar pedidos</h2>
-                </a>
-            </div>
-        </div>
-    </div>
-    {%if suscribe%}
-    {%include "suscripcion.html"%}
-    {%endif%}
+                <a href="#" class="text-center d-block p-5 rounded-3" style="text-decoration:none; background-image: url({% static 'pie
+    // Función para abrir el modal
+    function openModal() {
+      document.getElementById("myModal").style.display = "block";
+    }
+
+    // Función para cerrar el modal
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
+
+    // Función para eliminar un pedido (solo para simulación)
+    function eliminarPedido(numeroPedido) {
+      alert("Eliminando pedido #" + numeroPedido);
+    }
+  </script>
+</body>
+</html>
+
+</div>
+{%if suscribe%}
+{%include "suscripcion.html"%}
+{%endif%}
 </div>
 
-
-<!-- Termina código a copiar en template -->
-
 {% endblock body %}
+
