@@ -4,6 +4,7 @@ from .forms import ConvenienceStoreForm , ProvidersForm
 from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import Providers, ConvenienceStore
+from products.models import Cart
 
 def home(request):
     if request.user.is_authenticated:
@@ -12,9 +13,17 @@ def home(request):
         provider=Providers.objects.filter(user_id=user_id)
         buyer=ConvenienceStore.objects.filter(user_id=user_id)
         if provider:
-            return render(request,"homeVendedor.html", {"username":user,"profile":True, "suscribe": provider[0].is_suscribed})
+            try:
+                orders=Cart.objects.filter(bought=True)
+                lenOrders=len(orders)
+                client=ConvenienceStore.objects.get(id=Cart.id_convenience_store)
+                return render(request,"homeVendedor.html", {"username":user,"profile":True, "suscribe": provider[0].is_suscribed,"len":lenOrders,"orders":orders,"client":client})
+            except:
+                return render(request,"homeVendedor.html", {"username":user,"profile":True, "suscribe": provider[0].is_suscribed})
+
         elif buyer:
-            return render(request,"homeComprador.html",{"username":user})
+    
+            return render(request,"homeComprador.html",{"username":user })
         else:
             return render(request,"homeComprador.html",{"username":user})
     else:

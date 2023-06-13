@@ -5,14 +5,16 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import Products, Cart
 from .forms import cartForm, ProductsForm
+from django.db import transaction
 class cartProductTemplate:
-    def __init__(self,id,name,photoPath,quantity,description,form):
+    def __init__(self,id,name,photoPath,quantity,description,form,price):
         self.id=id
         self.name=name
         self.photoPath=photoPath
         self.quantinty=quantity
         self.description=description
         self.form=form
+        self.price=price
     def increseQuantity(self, newQuantity):
         self.quantity+=newQuantity
     def decreseQuantity(self,newQuantity):
@@ -50,8 +52,25 @@ def cart(request, userId):
     if request.user.is_authenticated:
         user=request.user.username
         if request.method == 'POST':
-            # Lógica para manejar el formulario POST si es necesario
-            pass
+            cart = Cart.objects.filter(id_convenience_store=userId, bought=False)
+            forms = [cartForm(request.POST, prefix=str(prod.id)) for prod in cart]
+        
+        # Verificar si algún formulario tiene cambios
+            if any(form.has_changed() for form in forms):
+                with transaction.atomic():
+                    for form in forms:
+                        if form.has_changed():
+                            print(form.has_changed())
+                            # Obtener el objeto Cart asociado al formulario
+                            cart_obj = Cart.objects.get(id=form.prefix)
+                            # Actualizar el registro en la base de datos con los nuevos datos del formulario
+                            # form_data = form.cleaned_data
+                            # cart_obj.quantity = form_data['quantity']
+                            cart_obj.save()
+                            
+                    # Cambiar la propiedad 'bought' de todos los objetos Cart a True
+                    Cart.objects.filter(id_convenience_store=userId, bought=False).update(bought=True)
+                    return HttpResponseRedirect(reverse_lazy('Dino ticket compra', args=[userId]))
         else:
             cart = Cart.objects.filter(id_convenience_store=userId, bought=False)
             products = []
@@ -119,8 +138,21 @@ def cosultOrders(request):
 def ticket (request, userId):
     if request.user.is_authenticated:
         user=request.user.username
-        cart = Cart.objects.filter(id_convenience_store=userId, bought=False)
-        return render(request, "ticketCompra.html",{"username":user,"userid":userId, "Products": cart})
+        cart = Cart.objects.filter(id_convenience_store=userId, bought=True)
+        products = []
+        total = 0
+        
+        for prod in cart:
+            if prod.quantity == 0:
+                # Eliminar el objeto del carrito si la cantidad es cero
+                prod.delete()
+            else:
+                product = get_object_or_404(Products, id=prod.id_producto_id)
+                newform = cartForm(initial={'quantity': prod.quantity})
+                newProduct = cartProductTemplate(id=product.id, name=product.name, photoPath=product.photoPath, quantity=prod.quantity, description=product.description, form=newform)
+                products.append(newProduct)
+                total += product.price * prod.quantity
+        return render(request, "ticketCompra.html",{'Products': products, 'total': total,"username":user,"userId":userId})
     else:
         return redirect('Dino iniciar sesion')
     

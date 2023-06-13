@@ -86,40 +86,43 @@
     <div class="container-fluid content">
 
 
-    <div class="container-md" id="carrito">
-      <table class="tablacarrito">
-        {% for producto in products%}
-          <tr>       
-            <td><a href="/busqueda-producto/{{producto.id}}"><img src="/static/ProductImages{{producto.photoPath.url }}"> </a></td>  
-            <td><a href="/busqueda-producto/{{producto.id}}">{{producto.description}}</a></td>        
-            <td>{{producto.form.quantity}}</td>
-          </tr>
-        {%endfor%}
+      <div class="container-md" id="carrito">
+        <form method="post">
+          {% csrf_token %}
+          <table class="tablacarrito">
+            {% for producto in products %}
+            <tr>
+              <td><a href="/busqueda-producto/{{ producto.id }}"><img src="/static/ProductImages{{ producto.photoPath.url }}"></a></td>
+              <td><a href="/busqueda-producto/{{ producto.id }}">{{ producto.description }}</a></td>
+              <td>{{ producto.form.quantity }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+          
         
-      </table>
+      </div>
       
-    </div>    
-    <div class="container rounded-3"  id="importetotal" style="background-color: #AB8742;"> 
-      <h4>Resumen de pedido</h4>
-      <div class="container total">  
-        <h5>Subtotal  </h5>
-        <p>{{total}}</p>
+      <div class="container rounded-3" id="importetotal" >
+        <h4>Resumen de pedido</h4>
+        <div class="container total">
+          <h5>Subtotal</h5>
+          <p>{{ total }}</p>
+        </div>
+        <div class="container total">
+          <h5>Total</h5>
+          <p>{{ total }}</p>
+        </div>
+        <button type="submit" class="btn btn-success">
+          <i class="fa-solid fa-list-check"></i>
+          Comprar
+        </button>
+      </form>
       </div>
-      <div class="container total">
-        <h5>Total  </h5>
-        <p>{{total}}</p>  
+      
+      <div class="container-fluid" id="footer">
+        <a href="ingresar_codigo_promocional">Ingresar código promocional</a>
+        <a href="agregar_una_nota">Agregar una nota</a>
       </div>
-
-      <a href="/ticket-de-compra/{{userId}}" class="btn btn-success"  >
-        <i class="fa-solid fa-list-check"></i>
-        comprar
-      </a>
     </div>
-    
-  </div>
-    
-  <div class="container-fluid" id="footer">
-  <a href="ingresar codigo promocional"></a>
-  <a href="agregar una nota"></a>
-  </div>
+      
 {% endblock body %}

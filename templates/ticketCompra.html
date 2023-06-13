@@ -36,6 +36,78 @@
       .footerticket{
         margin-bottom: 50%;
       }
+      .container-fluid .content{
+        display: flex;
+        flex-direction: row;
+      }
+      .container-md img {
+        display: flex;
+        flex-direction: row;
+        width: 100px;
+        height: 110px;
+        
+      }
+
+       table {
+        margin-left: 5px;
+        width: 100%;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        
+      }
+      h1{
+        text-align: center;
+      }
+      
+      #carrito{
+        border-top: solid black 2px;
+        border-bottom: solid black 2px;
+        width: 72%;
+        height: 55vh;
+        overflow: auto;
+        float: left;
+        margin-left: 40px;
+        overflow-x: hidden;
+      }
+      
+      #importetotal{
+        width: 200px;
+        height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        float: right;
+        margin-right: 50px;
+      }
+      #footer{
+        width: 100%;
+        position: fixed;
+        display: flex;
+        align-items: start;
+        flex-direction: column;
+      }
+      tr input{
+
+        width: 50px;
+        text-align: center;
+        border: solid black 1px;
+        margin-top: 40px;
+        margin-bottom: 40px; 
+      }
+      table{
+        width: 100%;
+      }
+      .container .total{
+        display: flex;
+        flex-direction: row;
+
+      }
+      a{
+        text-decoration: none;
+        color: black;
+      }
 
 
     </style>
@@ -51,31 +123,19 @@
     <td><img src="/static/ProductImages{{producto.photoPath.url}}" ></td>
     <td>{{producto.description}}</td>
     <td>{{producto.quantity}}</td>
-    <td>{{producto.price}}</td>
     </tr>
     {%endfor%}
     </table>
     </div>
 
     <div class="container-md" id="cuenta">
-    <table>
-      <tr>
-      <th>Producto</th>
-      </tr>
-      {% for producto in Products%}
-      <tr>
-        <td>{{producto.description}}</td>
-        <td>{{producto.price}}</td>
-      </tr>
-      <tr>
-        <td>Subtotal</td>
-        <td>{{total}}</td>
-      </tr>
-      {%endfor%}
-    </table>
+      Su orden ha sido aceptada, un proveedor le contactará lo antes posible.
+      Gracias por su preferencia. 
+      <hr>
+      El total a pagar es de:
+      ${{total}} pesos
     </div>
  
-  <a class="footerticket" href="">Imprimir ticket de compra</a>
   
 
 {% endblock body %}
