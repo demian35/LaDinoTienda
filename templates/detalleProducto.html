@@ -36,6 +36,13 @@
     margin-top: 2rem;
   }
 
+  .ImagenPrincipal img{
+    width: 150px;
+    height: 250px;
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+
   .ImagenProducto {
     width: 5rem;
     height: 5rem;
@@ -77,20 +84,20 @@
     />
   </div>
 
-  <div class="ImagenPrincipal">
+  <div class="ImagenPrincipal" style="text-align: center;">
     <img src="/static/ProductImages/{{product.photoPath}}" />
   </div>
 
   <div class="InformacionProducto">
-    <h1>{{product.name}}</h1>
-    <h2>{{product.brand}}</h2>
-    <p>{{product.description}}</p>
-    <p><!-- <img src="/static/pesos.svg" /> -->${{product.price}}</p>
+    <FONT size="6"><strong>Producto:</strong> <br>{{product.name}}</FONT>
+    <FONT size="5"><strong>Marca:</strong> <br>{{product.brand}}</FONT>
+    <FONT size="4"><strong>Descripcion:</strong> <br>{{product.description}}</FONT>
+    <FONT size="4"><!-- <img src="/static/pesos.svg" /> --><strong>Precio:</strong> <br> ${{product.price}}</FONT>
   </div>
 
   <div class="AgregarProducto">
     <h1 class="message">Cantidad</h1>
-    <form class="form" method="POST">
+    <form class="form" method="POST" style="align-items: center;">
       {% csrf_token %}
       {{form.quantity}}
       <br/>
