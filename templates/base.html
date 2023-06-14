@@ -15,6 +15,11 @@
 </head>
 <body>
   <style>
+
+    body{
+      overflow-x: hidden;
+    }
+
     nav{
       background-color: #536A44;
     }
@@ -43,6 +48,13 @@
       background: #FFFFFF;
       width: 50px;
     }
+
+    .dropdown-menu.dropdown-menu-center {
+      right: auto;
+      left: 50% !important;
+      transform: translateX(-50%);
+    }
+
   </style>
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
@@ -76,9 +88,9 @@
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               {{user}}
             </button>
-            <ul class="dropdown-menu dropdown-menu-dark">
+            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-center"">
               <li><a href="/" class="dropdown-item" type="button">Pagina Principal</a></li>
-              <li><a href="/consultar-pedidos" class="dropdown-item" type="button">Consultar Compras</a></li>
+              <li><a href="/ticket-de-compra/{{userId}}" class="dropdown-item" type="button">Consultar Compras</a></li>
               <li><a href="/cerrar-sesion" class="dropdown-item" type="button">Cerrar Sesión</a></li>
             </ul>
           </div>

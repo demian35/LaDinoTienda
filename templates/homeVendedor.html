@@ -43,29 +43,24 @@
       <span class="close" onclick="closeModal()">&times;</span>
       <h2>Consulta de Pedidos</h2>
       
+      
       <table>
         <tr>
           <th>#</th>
           <th>Nombre de la tienda</th>
           <th>Cantidad a pagar</th>
-          <th>Telefono</th>
+          <th>Teléfono</th>
         </tr>
-        {%for client in clients%}
+        {% for client in clients %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ client.name }}</td>
           <td>
-            1
+            <p>{{ bills }}</p>
           </td>
-          <td>
-            {{client.name}}
-          </td>
-        <td>
-          {% for bill in bills%}
-            {{bill}}
-          {% endfor %}
-        </td>
-        <td>
-          {{client.telephone}}
-        </td>
-        {%endfor%}
+          <td>{{ client.telephone }}</td>
+        </tr>
+        {% endfor %}
       </table>
     </div>
   </div>

@@ -29,23 +29,27 @@ def home(request):
                         clients.append(client)
                         bills.append(order.quantity * product.price)
                 if len(clients)==0:
-                    return render(request,"homeVendedor.html", {"username":user,"profile":True, "suscribe": provider[0].is_suscribed})
+                    print(clients)
+
+                    return render(request,"homeVendedor.html", {"username":user,"userId": user_id,"profile":True, "suscribe": provider[0].is_suscribed})
                 if len(clients)==1:
                     print(clients)
-                    return render(request,"homeVendedor.html", {"username":user,"profile":True, "suscribe": provider[0].is_suscribed,"bills": bills, "clients": clients})
+                    return render(request,"homeVendedor.html", {"username":user, "userId": user_id, "profile":True, "suscribe": provider[0].is_suscribed,"bills": bills, "clients": clients})
                 else:
-                    return render(request, "homeVendedor.html", {"username": user, "profile": True, "suscribe": provider[0].is_suscribed,"bills": bills, "clients": clients})
+                    print(clients)
+                    return render(request, "homeVendedor.html", {"username": user, "userId": user_id, "profile": True, "suscribe": provider[0].is_suscribed,"bills": bills, "clients": clients})
 
         elif buyer:
     
-            return render(request,"homeComprador.html",{"username":user })
+            return render(request,"homeComprador.html",{"username":user , "userId": user_id})
         else:
-            return render(request,"homeComprador.html",{"username":user})
+            return render(request,"homeComprador.html",{"username":user, "userId": user_id})
     else:
         return redirect('Dino iniciar sesion')
 def ProvidersFormView(request):
     if request.user.is_authenticated:
         user=request.user.username
+        user_id=request.user.id
         
         if request.method=="POST":
             form=ProvidersForm(request.POST)
@@ -55,7 +59,7 @@ def ProvidersFormView(request):
                 return HttpResponseRedirect(reverse_lazy('home', args=[]))
         else:
             form=ProvidersForm()
-        return render(request, "registroVendedor.html", {'form':form,"username":user})
+        return render(request, "registroVendedor.html", {'form':form,"username":user, "userId": user_id})
     else:
         return redirect('Dino iniciar sesion')
 def ConvenienceStoreFormView(request):
@@ -72,7 +76,7 @@ def ConvenienceStoreFormView(request):
                 return HttpResponseRedirect(reverse_lazy('home', args=[]))
         else:
             form=ConvenienceStoreForm()
-        return render(request, "ConvenienceStoreRegister.html",{'form': form,"title":"Registro de tienda de conveniencia","username":user })
+        return render(request, "ConvenienceStoreRegister.html",{'form': form,"title":"Registro de tienda de conveniencia","username":user, "userId": userId})
     else:
         return redirect('Dino iniciar sesion')
     

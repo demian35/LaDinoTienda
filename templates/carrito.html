@@ -72,7 +72,7 @@
       }
       .container .total{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
 
       }
       a{
@@ -102,24 +102,26 @@
         
       </div>
       
-      <div class="container rounded-3" id="importetotal" >
-        <h4>Resumen de pedido</h4>
-        <div class="container total">
-          <h5>Subtotal</h5>
+      <div class="container rounded-3" id="importetotal" style="margin-top: 50px;" >
+        <FONT size = "5" > <strong>Resumen de pedido</strong> </FONT>
+        <div class="container total" style="margin-top: 30px;">
+          <FONT size="4"> <strong>Subtotal:</strong></FONT>
           <p>{{ total }}</p>
         </div>
         <div class="container total">
-          <h5>Total</h5>
+          <FONT size = "4"> <strong>Total:</strong></FONT>
           <p>{{ total }}</p>
         </div>
-        <button type="submit" class="btn btn-success">
+        <button type="submit" class="btn btn-success" style="margin-top: 10px;">
           <i class="fa-solid fa-list-check"></i>
           Comprar
         </button>
+        <a class="btn btn-success" href="/" style="margin-top: 10px; display: flex; flex-direction: column;">
+          <i class="fa-solid fa-house"></i>
+          Seguir comprando
+        </a>
       </form>
       </div>
-
-
     </div>
       
 {% endblock body %}
